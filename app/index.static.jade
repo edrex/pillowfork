@@ -1,7 +1,44 @@
 extends _layout
+block title
+  | Rewrite
 block body
+  h1 Choose Your Own Adventure
+    em  Plus
   h2 Possible names
   ul
     li Rewrite
     li Choose Your Own Adventure Plus
     li Fanfix
+  div(ng-app='myapp')
+    div(ng-controller='MyController')
+      h2 Sign In
+      .alert.alert-warning(ng-hide='user')
+        p
+          | Sign in with 
+          a(ng-click='login(\'twitter\')') Twitter 
+          | or 
+          a(ng-click='login(\'github\')') Github
+          | .
+      .alert.alert-success(ng-show='user')
+        | You are signed in as 
+        i(class="fa fa-{{user.provider}}")  {{user.name}}
+        |  | 
+        a(ng-click='logout()') Sign out
+      h2 Test app
+      #messages.panel.panel-default
+        .panel-body
+          div(ng-repeat='msg in messages')
+            em
+              i(class="fa fa-{{msg.provider}}")
+              |  {{msg.name}}
+            | : {{msg.text}}
+        .panel-footer
+          form.form-inline(role='form')
+            div(ng-show='user')
+              input.form-control(type='text', ng-model='text', ng-keydown='addMessage($event)', placeholder='Message...')
+  script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.5/angular.js")
+  script(src="//cdn.firebase.com/v0/firebase.js")
+  script(src="//cdn.firebase.com/v0/firebase-simple-login.js")
+  script(src="//cdn.firebase.com/libs/angularfire/0.3.0/angularfire.js")
+  script(src="/myapp.js")
+
