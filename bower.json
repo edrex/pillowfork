@@ -2,11 +2,11 @@
   "name": "mean",
   "version": "0.1.0",
   "dependencies": {
-    "angular": "1.2.4",
-    "angular-resource": "latest",
-    "angular-cookies": "1.2.4",
-    "angular-mocks": "latest",
-    "angular-route": "latest",
+    "angular": "1.2.5",
+    "angular-resource": "1.2.5",
+    "angular-cookies": "1.2.5",
+    "angular-mocks": "1.2.5",
+    "angular-route": "1.2.5",
     "bootstrap": "2.3.2",
     "angular-bootstrap": "0.7.0",
     "angular-ui-utils": "0.0.4"
