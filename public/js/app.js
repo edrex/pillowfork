@@ -1,5 +1,5 @@
-angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles', 'mean.pages']);
+angular.module('pillowfork', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'pillowfork.system', 'pillowfork.articles', 'pillowfork.pages']);
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
-angular.module('mean.pages', []);
+angular.module('pillowfork.system', []);
+angular.module('pillowfork.articles', []);
+angular.module('pillowfork.pages', []);

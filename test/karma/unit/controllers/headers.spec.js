@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    describe('MEAN controllers', function() {
+    describe('Pillowfork controllers', function() {
 
         describe('HeaderController', function() {
 
             // Load the controllers module
-            beforeEach(module('mean'));
+            beforeEach(module('pillowfork'));
 
             var scope,
                 HeaderController;

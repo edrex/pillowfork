@@ -1,4 +1,4 @@
-angular.module('mean.pages').controller('PagesController', ['$scope', '$routeParams', '$location', 'Global', 'Pages', function ($scope, $routeParams, $location, Global, Pages) {
+angular.module('pillowfork.pages').controller('PagesController', ['$scope', '$routeParams', '$location', 'Global', 'Pages', function ($scope, $routeParams, $location, Global, Pages) {
     $scope.global = Global;
 
     $scope.create = function() {

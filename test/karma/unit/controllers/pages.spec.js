@@ -20,7 +20,7 @@
             });
 
             // Load the controllers module
-            beforeEach(module('mean'));
+            beforeEach(module('pillowfork'));
 
             // Initialize the controller and a mock scope
             var PagesController,
