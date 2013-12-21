@@ -1,0 +1,11 @@
+<section data-ng-controller="PagesController" data-ng-init="find()">
+	<ul class="pages unstyled">
+		<li data-ng-repeat="page in pages">
+			<span>{{page.created | date:'medium'}}</span> /
+			<span>{{page.user.name}}</span>
+			<h2><a data-ng-href="#!/pages/{{page._id}}">{{page.title}}</a></h2>
+			<div>{{page.content}}</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!pages || pages.length">No pages yet. <br> Why don't you <a href="/#!/pages/create">Create One</a>?</h1>
+</section>

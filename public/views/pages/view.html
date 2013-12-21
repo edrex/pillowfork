@@ -1,0 +1,14 @@
+<section data-ng-controller="PagesController" data-ng-init="findOne()">
+    <span>{{page.created | date:'medium'}}</span>/
+    <span>{{page.user.name}}</span>
+    <h2>{{page.title}}</h2>
+    <div data-ng-show="global.user._id == page.user._id">
+        <a class="btn" href="/#!/pages/{{page._id}}/edit">
+        	<i class="icon-edit"></i>
+        </a> 
+        <a class="btn" data-ng-click="remove();">
+            <i class="icon-trash"></i>
+        </a>
+    </div>
+    <div>{{page.content}}</div>
+</section>
