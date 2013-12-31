@@ -1,11 +1,16 @@
 {
-  "name": "yearofmoo-angularjs-seed-repo",
+  "name": "pillowfork",
   "version":"0.0.1",
+  "authors": [
+    "Eric Drechsel <eric@pdxhub.org>"
+  ],
+  "private": true,
   "dependencies": {
     "jquery": "~2.0.3",
     "angular": "1.2.5",
     "angular-route": "1.2.5",
     "angular-animate": "1.2.5",
-    "angular-mocks": "1.2.5"
+    "angular-mocks": "1.2.5",
+    "angular-pouchdb": "~0.1.2"
   }
 }
