@@ -1,39 +1,27 @@
-# Yearofmoo AngularJS Seed Repo
+# pillowfork 
 
-A starter AngularJS repository for getting started with AngularJS. Includes helpful unit testing tools, Protractor integration and coverage testing.
+Pillowfork is a collaborative writing experiment. 
 
-## Installation
+It allows anyone to create alternate branches of a narrative work. This might be used for:
 
-1. `npm install -g grunt-cli`
-2. `npm install`
-3. `grunt install`
+ - Free-form writing in a crazy group brainstorm
+ - Exploring concurrent events
 
-## Development
+## Get involved
 
-1. `grunt dev`
-2. Go to: `http://localhost:8888`
+discoursive 
 
-## Testing
+ - [Roadmap on Trello](https://trello.com/b/vGDutzqN/pillow-fork)
 
-### Run all tests with
-`grunt test` 
+`## Questions
 
-### Unit Testing
+- Can I assign ID on server side based on content?
+  - if yes, set on save
+  - if not, set in client and validate on server
+- How is validation of author info normally handled?
 
-#### Single run tests
-`grunt test:unit` 
+## Icebox
 
-#### Auto watching tests
-`grunt autotest:unit`
-
-### End to End Testing (Protractor)
-
-#### Single run tests
-`grunt test:e2e` 
-
-#### Auto watching tests
-`grunt autotest:e2e`
-
-### Coverage Testing
-
-`grunt coverage`
+- Show authn state in draft page header
+- In place of author info on saved page
+- Images
