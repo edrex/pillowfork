@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="style/pillowfork.css" type="text/css">
   </head>
   <body ng-controller='PagesController'>
-    <div class="page">{{ pageId }}</div>
-    <div class="page-list">
+    <div class="page" ng-cloak>{{ pageId }}</div>
+    <div class="page-list" ng-cloak>
       <a class="page" ng-repeat='page in nextPages' ng-href="#/{{ page._id }}">
         <div class="page-header">
           <h1 class="title">{{ page.title }}</h1>
