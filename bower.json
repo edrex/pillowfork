@@ -11,6 +11,7 @@
     "angular-route": "1.2.5",
     "angular-animate": "1.2.5",
     "angular-mocks": "1.2.5",
-    "angular-pouchdb": "~0.1.2"
+    "angular-pouchdb": "~0.1.2",
+    "lodash": "~2.4.1"
   }
 }

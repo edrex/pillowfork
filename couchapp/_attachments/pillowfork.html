@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app='pillowfork'>
+  <head>
+    <link rel="stylesheet" href="style/pillowfork.css" type="text/css">
+  </head>
+  <body ng-controller='PagesController'>
+    <div class="page">{{ pageId }}</div>
+    <div class="page-list">
+      <a class="page" ng-repeat='page in nextPages' ng-href="#/{{ page._id }}">
+        <div class="page-header">
+          <h1 class="title">{{ page.title }}</h1>
+        </div>
+      </a>
+    </div>
+  </body>
+
+  <script src="/_utils/script/sha1.js"></script>
+  <script src="/_utils/script/json2.js"></script>
+  <!--<script src="/_utils/script/jquery.js"></script>
+  <script src="/_utils/script/jquery.couch.js"></script>-->
+  <script src="vendor/lodash/lodash.js"></script>
+  <script src="vendor/angular/angular.js"></script>
+  <!--<script src="vendor/angular-route/angular-route.js"></script>-->
+  <script src="vendor/pouchdb/pouchdb.js"></script>
+  <script src="vendor/angular-pouchdb/angular-pouchdb.js"></script>
+  <script src="script/pillowfork.js"></script>
+  </html>
