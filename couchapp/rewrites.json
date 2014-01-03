@@ -1,0 +1,9 @@
+[
+  {
+    "from": "/",
+    "to": "pillowfork.html"
+  },
+  { "from": "/pillowfork", "to": "../.." },
+  { "from": "/pillowfork/*", "to": "../../*" },
+  { "from": "/*", "to": "*" }
+]
