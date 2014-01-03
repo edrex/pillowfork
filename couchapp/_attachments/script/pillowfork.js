@@ -56,5 +56,7 @@ function PagesController($scope, pages, $location) {
   // $scope.page = pagesdb.find()
   
   // need to wrap couch queries in services which handle change watching
-  pages.nextPages().then(function(val){ $scope.nextPages = val });
+  pages.nextPages().then(function(val){
+    $scope.nextPages = val
+  });
 }
