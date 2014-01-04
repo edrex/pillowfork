@@ -1,6 +1,6 @@
 {
   "name": "pillowfork",
-  "version":"0.0.1",
+  "version": "0.0.1",
   "authors": [
     "Eric Drechsel <eric@pdxhub.org>"
   ],
@@ -13,5 +13,8 @@
     "angular-mocks": "1.2.5",
     "angular-pouchdb": "~0.1.2",
     "lodash": "~2.4.1"
+  },
+  "resolutions": {
+    "angular": "1.2.5"
   }
 }
