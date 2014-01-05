@@ -18,17 +18,5 @@ Pillowfork is an experiment in collaborative writing experiment, where anyone ca
 
 ## Get involved
 
+ - Contribute to a story on <http://pillowfork.com>
  - [Roadmap on Trello](https://trello.com/b/vGDutzqN/pillow-fork)
-
-## Log
-
-- Tests first
-- Can I assign ID on server side based on content?
-  - if yes, set on save
-  - if not, set in client and validate on server
-- How is validation of author info normally handled?
-
-i prob need to switch to js couchapp
- - https://github.com/garbados/grunt-couchapp
- - https://github.com/jo/grunt-couch
-
