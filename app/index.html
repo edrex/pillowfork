@@ -1,19 +1,30 @@
-<!DOCTYPE html> 
-<html data-ng-app="myApp">
+<!DOCTYPE html>
+<html ng-app='pillowfork'>
   <head>
-    <title>Yearofmoo AngularJS Seed Repo</title>
-    <link rel="stylesheet" type="text/css" href="./assets/app.css" />
+    <title>Pillowfork</title>
+    <link rel="stylesheet" href="style/pillowfork.css" type="text/css">
   </head>
-
-  <body>
-    <div id="wrapper">
-      <header>Header</header>
-      <main id="view-container">
-        <div ng-view></div>
-      </main>
-      <footer>Footer</footer>
+  <body ng-controller='PagesController'>
+    <h1>Pillowfork</h1>
+    <div class="page" ng-cloak>{{ pageId }}</div>
+    <div class="page-list" ng-cloak>
+      <a class="page" ng-repeat='page in nextPages' ng-href="#/{{ page._id }}">
+        <div class="page-header">
+          <h1 class="title">{{ page.title }}</h1>
+        </div>
+      </a>
     </div>
-    <script src="./assets/app.js"></script>
-    <script src="//localhost:7777/livereload.js"></script>
   </body>
-</html>
+
+  <script src="/_utils/script/sha1.js"></script>
+  <script src="/_utils/script/json2.js"></script>
+  <!--<script src="/_utils/script/jquery.js"></script>
+  <script src="/_utils/script/jquery.couch.js"></script>-->
+  <script src="script/vendor/lodash.js"></script>
+  <script src="script/vendor/angular.js"></script>
+  <!--<script src="script/vendor/angular-route.js"></script>-->
+  <script src="script/vendor/pouchdb.js"></script>
+  <script src="script/vendor/angular-pouchdb.js"></script>
+  <script src="script/pillowfork.js"></script>
+  <script src="//localhost:7777/livereload.js"></script>
+  </html>
