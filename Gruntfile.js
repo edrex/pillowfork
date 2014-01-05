@@ -3,41 +3,6 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
-    
-    'couch-compile': {
-      couchapp: {
-        files: {
-          'tmp/couchapp.json': 'couchapp'
-        }
-      },
-    },
-
-    'couch-push': {
-      localhost: {
-        files: {
-          'http://127.0.0.1:5984/pillowfork': 'tmp/couchapp.json'
-        }
-      }
-    },
-
-    shell: {
-      options: {
-        stdout: true
-      },
-      selenium: {
-        command: 'node ./node_modules/protractor/bin/webdriver-manager start',
-        options: {
-          stdout: false,
-          async: true
-        }
-      },
-      protractor_install: {
-        command: 'node ./node_modules/protractor/bin/webdriver-manager update'
-      },
-      npm_install: {
-        command: 'npm install'
-      }
-    },
 
     connect: {
       options: {
@@ -51,22 +16,6 @@ module.exports = function(grunt) {
       testserver: {
         options: {
           port: 9999
-        }
-      }
-    },
-
-    protractor: {
-      options: {
-        keepAlive: true,
-        configFile: "./test/protractor.conf.js"
-      },
-      singlerun: {},
-      auto: {
-        keepAlive: true,
-        options: {
-          args: {
-            seleniumPort: 4444
-          }
         }
       }
     },
@@ -85,7 +34,7 @@ module.exports = function(grunt) {
       styles: {
         dest: './app/assets/app.css',
         src: [
-          'app/styles/app.css',
+          'app/style/app.css',
           //place your Stylesheet files here
         ]
       },
@@ -93,16 +42,36 @@ module.exports = function(grunt) {
         options: {
           separator: ';'
         },
-        dest: './app/assets/app.js',
-        src: [
-          'bower_components/angular/angular.js',
-          'bower_components/angular-route/angular-route.js',
-          'bower_components/angular-animate/angular-animate.js',
-          'app/scripts/homePages.js',
-          'app/scripts/app.js',
-          //place your JavaScript files here
-        ]
+        files: {
+          './app/assets/app.js': [
+            'app/script/app.js'
+          ],
+          './app/assets/components.js': [
+            'bower_components/lodash/dist/lodash.js',
+            'bower_components/pouchdb-nightly.min.js/index.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-route/angular-route.js',
+            // 'bower_components/angular-animate/angular-animate.js',
+            'bower_components/angular-pouchdb/angular-pouchdb.js'
+          ]
+        } 
       },
+    },
+
+    'couch-compile': {
+      couchapp: {
+        files: {
+          'tmp/couchapp.json': 'couchapp'
+        }
+      },
+    },
+
+    'couch-push': {
+      localhost: {
+        files: {
+          'http://127.0.0.1:5984/pillowfork': 'tmp/couchapp.json'
+        }
+      }
     },
 
     watch: {
@@ -120,15 +89,6 @@ module.exports = function(grunt) {
       couchapp: {
         files: ['couchapp/**/*'],
         tasks: ['couch']
-      }
-    },
-
-    open: {
-      devserver: {
-        path: 'http://localhost:8888'
-      },
-      coverage: {
-        path: 'http://localhost:5555'
       }
     },
 
@@ -156,6 +116,50 @@ module.exports = function(grunt) {
           dir : 'coverage/'
         }
       },
+    },
+
+    protractor: {
+      options: {
+        keepAlive: true,
+        configFile: "./test/protractor.conf.js"
+      },
+      singlerun: {},
+      auto: {
+        keepAlive: true,
+        options: {
+          args: {
+            seleniumPort: 4444
+          }
+        }
+      }
+    },
+
+    open: {
+      devserver: {
+        path: 'http://localhost:8888'
+      },
+      coverage: {
+        path: 'http://localhost:5555'
+      }
+    },
+
+    shell: {
+      options: {
+        stdout: true
+      },
+      selenium: {
+        command: 'node ./node_modules/protractor/bin/webdriver-manager start',
+        options: {
+          stdout: false,
+          async: true
+        }
+      },
+      protractor_install: {
+        command: 'node ./node_modules/protractor/bin/webdriver-manager update'
+      },
+      npm_install: {
+        command: 'npm install'
+      }
     }
   });
 
