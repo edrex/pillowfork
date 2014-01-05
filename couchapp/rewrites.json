@@ -1,7 +1,7 @@
 [
   {
     "from": "/",
-    "to": "pillowfork.html"
+    "to": "index.html"
   },
   { "from": "/pillowfork", "to": "../.." },
   { "from": "/pillowfork/*", "to": "../../*" },
