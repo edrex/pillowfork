@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       styles: {
         dest: './app/assets/app.css',
         src: [
-          'app/style/app.css',
+          'app/styles/app.css',
           //place your Stylesheet files here
         ]
       },
@@ -44,7 +44,8 @@ module.exports = function(grunt) {
         },
         files: {
           './app/assets/app.js': [
-            'app/script/app.js'
+            'app/scripts/pages.js',
+            'app/scripts/app.js'
           ],
           './app/assets/components.js': [
             'bower_components/lodash/dist/lodash.js',

@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html ng-app='pillowfork'>
+<html data-ng-app='pillowfork'>
   <head>
     <title>Pillowfork</title>
     <link rel="stylesheet" href="assets/app.css" type="text/css">
   </head>
-  <body ng-controller='PagesController'>
-    <h1>Pillowfork</h1>
-    <div class="page" ng-cloak>{{ pageId }}</div>
-    <div class="page-list" ng-cloak>
-      <a class="page" ng-repeat='page in nextPages' ng-href="#/{{ page._id }}">
-        <div class="page-header">
-          <h1 class="title">{{ page.title }}</h1>
-        </div>
-      </a>
-    </div>
+  <body>
+    <header></header>
+    <main id="view-container">
+      <div ng-view></div>
+    </main>
+    <footer></footer>
   </body>
 
   <!--<script src="/_utils/script/sha1.js"></script>
@@ -23,4 +19,4 @@
   <script src="assets/components.js"></script>
   <script src="assets/app.js"></script>
   <script src="//localhost:7777/livereload.js"></script>
-  </html>
+</html>
