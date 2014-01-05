@@ -3,12 +3,29 @@ module.exports = function(grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
+    
+    'couch-compile': {
+      couchapp: {
+        files: {
+          'tmp/couchapp.json': 'couchapp'
+        }
+      },
+    },
+
+    'couch-push': {
+      localhost: {
+        files: {
+          'http://127.0.0.1:5984/pillowfork': 'tmp/couchapp.json'
+        }
+      }
+    },
+
     shell: {
       options: {
         stdout: true
       },
       selenium: {
-        command: './selenium/start',
+        command: 'node ./node_modules/protractor/bin/webdriver-manager start',
         options: {
           stdout: false,
           async: true
@@ -26,12 +43,6 @@ module.exports = function(grunt) {
       options: {
         base: 'app/'
       },
-      webserver: {
-        options: {
-          port: 8888,
-          keepalive: true
-        }
-      },
       devserver: {
         options: {
           port: 8888
@@ -40,13 +51,6 @@ module.exports = function(grunt) {
       testserver: {
         options: {
           port: 9999
-        }
-      },
-      coverage: {
-        options: {
-          base: 'coverage/',
-          port: 5555,
-          keepalive: true
         }
       }
     },
@@ -110,8 +114,12 @@ module.exports = function(grunt) {
         tasks: ['concat']
       },
       protractor: {
-        files: ['app/scripts/**/*.js','test/e2e/**/*.js'],
-        tasks: ['protractor:auto']
+        files: ['couchapp/_attachments/scripts/*.js','couchapp/_attachments/*.html','test/e2e/**/*.js'],
+        tasks: ['couch', 'protractor:auto']
+      },
+      couchapp: {
+        files: ['couchapp/**/*'],
+        tasks: ['couch']
       }
     },
 
@@ -159,7 +167,7 @@ module.exports = function(grunt) {
   //autotest and watch tests
   grunt.registerTask('autotest', ['karma:unit_auto']);
   grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
+  grunt.registerTask('autotest:e2e', ['shell:selenium','watch:protractor']);
 
   //coverage testing
   grunt.registerTask('test:coverage', ['karma:unit_coverage']);

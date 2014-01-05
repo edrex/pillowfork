@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html ng-app='pillowfork'>
   <head>
+    <title>Pillowfork</title>
     <link rel="stylesheet" href="style/pillowfork.css" type="text/css">
   </head>
   <body ng-controller='PagesController'>
+    <h1>Pillowfork</h1>
     <div class="page" ng-cloak>{{ pageId }}</div>
     <div class="page-list" ng-cloak>
       <a class="page" ng-repeat='page in nextPages' ng-href="#/{{ page._id }}">
@@ -18,10 +20,11 @@
   <script src="/_utils/script/json2.js"></script>
   <!--<script src="/_utils/script/jquery.js"></script>
   <script src="/_utils/script/jquery.couch.js"></script>-->
-  <script src="vendor/lodash/lodash.js"></script>
-  <script src="vendor/angular/angular.js"></script>
-  <!--<script src="vendor/angular-route/angular-route.js"></script>-->
-  <script src="vendor/pouchdb/pouchdb.js"></script>
-  <script src="vendor/angular-pouchdb/angular-pouchdb.js"></script>
+  <script src="script/vendor/lodash.js"></script>
+  <script src="script/vendor/angular.js"></script>
+  <!--<script src="script/vendor/angular-route.js"></script>-->
+  <script src="script/vendor/pouchdb.js"></script>
+  <script src="script/vendor/angular-pouchdb.js"></script>
   <script src="script/pillowfork.js"></script>
+  <script src="//localhost:7777/livereload.js"></script>
   </html>

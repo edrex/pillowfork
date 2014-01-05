@@ -1,10 +1,7 @@
-describe('Home Pages', function() {
-
-  var ptor = protractor.getInstance();
-
-  it('should load the homepage', function() {
-    ptor.get('/#');
-    expect(ptor.findElement(protractor.By.id('view-container')).getText()).toBe('Welcome Home...');
+describe('Home Page', function() {
+  it('should be titled pillowfork', function() {
+    browser.get('/');
+    expect($('h1').getText()).toBe('Pillowfork');
   });
 
 });

@@ -6,3 +6,4 @@ bower_components
 /coverage
 /app/assets
 vendor
+tmp
