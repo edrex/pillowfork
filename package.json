@@ -27,7 +27,6 @@
     "karma": "~0.10.2",
     "protractor": "~0.16.0",
     "grunt-protractor-runner": "~0.1.6",
-    "grunt-shell-spawn": "~0.3.0",
-    "grunt-couch": "~1.2.3"
+    "grunt-shell-spawn": "~0.3.0"
   }
 }

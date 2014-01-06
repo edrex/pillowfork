@@ -52,22 +52,6 @@ module.exports = function(grunt) {
       }
     },
 
-    'couch-compile': {
-      couchapp: {
-        files: {
-          'tmp/couchapp.json': 'couchapp'
-        }
-      },
-    },
-
-    'couch-push': {
-      localhost: {
-        files: {
-          'http://127.0.0.1:5984/pillowfork': 'tmp/couchapp.json'
-        }
-      }
-    },
-
     watch: {
       options : {
         livereload: 7777
@@ -167,9 +151,9 @@ module.exports = function(grunt) {
       protractor_install: {
         command: 'node ./node_modules/protractor/bin/webdriver-manager update'
       },
-      npm_install: {
-        command: 'npm install'
-      }
+      npm_install: { command: 'npm install' }
+      push_local: { command: 'erica push . local' },
+      push_prod: { command: 'erica push . prod' },
     }
   });
 
