@@ -18,29 +18,38 @@ module.exports = function(grunt) {
       styles: {
         dest: './app/assets/app.css',
         src: [
-          'app/styles/app.css',
-          //place your Stylesheet files here
+          'bower_components/Medium.js/medium.css',
+          'app/styles/app.css'
         ]
       },
-      scripts: {
+      app: {
         options: {
           separator: ';'
         },
         files: {
           './app/assets/app.js': [
             'app/scripts/pages.js',
+            'app/scripts/drafts.js',
             'app/scripts/app.js'
-          ],
+          ]
+        } 
+      },
+      components: {
+        options: {
+          separator: ';'
+        },
+        files: {
           './app/assets/components.js': [
             'bower_components/lodash/dist/lodash.js',
             'bower_components/pouchdb-nightly.min.js/index.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-route/angular-route.js',
             // 'bower_components/angular-animate/angular-animate.js',
-            'bower_components/angular-pouchdb/angular-pouchdb.js'
+            'bower_components/angular-pouchdb/angular-pouchdb.js',
+            'bower_components/Medium.js/medium.js'
           ]
         } 
-      },
+      }
     },
 
     'couch-compile': {
