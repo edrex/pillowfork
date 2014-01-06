@@ -1,9 +1,15 @@
-<h1>Pillowfork</h1>
-<div class="page" ng-cloak>{{ pageId }}</div>
+<div class="page" ng-show='page' ng-cloak>
+  <h1>{{page.title}}</h1>
+  <div class="body">{{page.body}}</div>
+</div>
 <div class="page-list" ng-cloak>
-  <a class="page" ng-repeat='page in nextPages' ng-href="#/{{ page._id }}">
+  <a class="page" ng-repeat='nextPage in nextPages' ng-href="#/{{ nextPage._id }}">
     <div class="page-header">
-      <h1 class="title">{{ page.title }}</h1>
+      <h1 class="title">{{ nextPage.title }}</h1>
+    </div>
+  </a>
+  <a class="page new" ng-show=' !page || page._id' ng-href="#/draft/{{ page._id }}">
+    <div class="page-header">
     </div>
   </a>
 </div>

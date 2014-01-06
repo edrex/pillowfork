@@ -1,55 +1,32 @@
-angular.module('app.pages', ['ngRoute'])
+angular.module('app.pages', ['ngRoute', 'pouchdb'])
+  .constant('ddoc', 'pillowfork')
+  .constant('db', 'pillowfork')
 
-  .factory('config', function($location) {
-      c = {
-        protocol: $location.protocol(),
-        host: $location.host(),
-        port: $location.port(),
-        db: 'pillowfork',
-        ddoc: 'pillowfork'
-      }
-      c.uri = c.protocol + '://' + c.host + (c.port ? ':'+ c.port : '') + '/' + c.db;
-      return c;
-  })
-
-  .factory('pagesdb', function(pouchdb, config) {
+  .factory('pagesDb', function(pouchdb, $location, db) {
+    var c = $location;
+    var dbUri = c.protocol() + '://' + c.host() + (c.port() ? ':'+ c.port() : '') + '/' + db;
        
-      // PouchDB.replicate(config.uri, local, {continuous: true });
-      // pouchdb.replicate(local, config.uri, {continuous: true });
-      // return pouchdb.create('pages');
-      db = pouchdb.create(config.uri)
-      // db = new PouchDB(config.uri)
-      return db;
+    // PouchDB.replicate(config.uri, local, {continuous: true });
+    // pouchdb.replicate(local, config.uri, {continuous: true });
+    // return pouchdb.create('pages');
+    db = pouchdb.create(dbUri);
+    // db = new PouchDB(config.uri)
+    return db;
   })
 
-  .factory('pages', function($q, pagesdb, config) {
+  .controller('PageCtrl', function($scope, $routeParams, pagesDb, ddoc) {
+    var pageId = $routeParams.pageId;
 
-      return {
-          add: function(page) { 
-            // TODO: set ID here
-            pagesdb.put(page);
-          },
-          nextPages: function(predecessor) {
-            return pagesdb.query(config.ddoc+'/next-pages', { key: predecessor || null }).then(function(res){
-              return _.pluck(res.rows, 'value');
-            });
-          }
-      };
-  })
-
-  .controller('PageCtrl', function($scope, $routeParams, pages) {
-    // is there a better way to do this?
-    // $scope.location = $location;
-    // $scope.$watch('location.path()', function(path) {
-    //   $scope.pageId = path;
-    // });
-    $scope.pageId = $routeParams.pageId;
-    // $scope.page = pagesdb.find()
+    if (pageId) {
+      pagesDb.get(pageId).then(function(res){
+        $scope.page = res;
+      });
+    } else {
+      $scope.page = undefined
+    }
   
-    // need to wrap couch queries in services which handle change watching
-    pages.nextPages().then(function(val){
-      $scope.nextPages = val
+    pagesDb.query(ddoc+'/next-pages', { key: pageId || null })
+    .then(function(res){
+      $scope.nextPages = _.pluck(res.rows, 'value');
     });
   })
-
-
