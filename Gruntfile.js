@@ -4,22 +4,6 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
-    connect: {
-      options: {
-        base: 'app/'
-      },
-      devserver: {
-        options: {
-          port: 8888
-        }
-      },
-      testserver: {
-        options: {
-          port: 9999
-        }
-      }
-    },
-
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -135,6 +119,22 @@ module.exports = function(grunt) {
       }
     },
 
+    connect: {
+      options: {
+        base: 'app/'
+      },
+      devserver: {
+        options: {
+          port: 8888
+        }
+      },
+      testserver: {
+        options: {
+          port: 9999
+        }
+      }
+    },
+
     open: {
       devserver: {
         path: 'http://localhost:8888'
@@ -187,7 +187,4 @@ module.exports = function(grunt) {
 
   //development
   grunt.registerTask('dev', ['update', 'connect:devserver', 'open:devserver', 'watch:assets']);
-
-  //server daemon
-  grunt.registerTask('serve', ['connect:webserver']);
 };
