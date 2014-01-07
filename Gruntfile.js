@@ -108,10 +108,9 @@ module.exports = function(grunt) {
       },
       singlerun: {},
       auto: {
-        keepAlive: true,
         options: {
           args: {
-            seleniumPort: 4444
+            seleniumAddress: 'http://127.0.0.1:4444/wd/hub'
           }
         }
       }
@@ -176,7 +175,7 @@ module.exports = function(grunt) {
   //autotest and watch tests
   grunt.registerTask('autotest', ['karma:unit_auto']);
   grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  grunt.registerTask('autotest:e2e', ['shell:selenium','watch:protractor']);
+  grunt.registerTask('autotest:e2e', ['shell:selenium','watch:e2e']);
 
   //coverage testing
   grunt.registerTask('test:coverage', ['karma:unit_coverage']);
