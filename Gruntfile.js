@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 
     concat: {
       styles: {
-        dest: './app/assets/app.css',
+        dest: 'app/assets/app.css',
         src: [
           'bower_components/Medium.js/medium.css',
           'app/styles/app.css'
@@ -27,46 +27,51 @@ module.exports = function(grunt) {
           separator: ';'
         },
         files: {
-          './app/assets/app.js': [
+          'app/assets/app.js': [
             'app/scripts/pages.js',
             'app/scripts/drafts.js',
             'app/scripts/app.js'
           ]
-        } 
+        }
       },
       components: {
         options: {
           separator: ';'
         },
         files: {
-          './app/assets/components.js': [
+          'app/assets/components.js': [
             'bower_components/lodash/dist/lodash.js',
             'bower_components/pouchdb-nightly.min.js/index.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-route/angular-route.js',
-            // 'bower_components/angular-animate/angular-animate.js',
             'bower_components/angular-pouchdb/angular-pouchdb.js',
             'bower_components/Medium.js/medium.js'
           ]
-        } 
+        }
       }
     },
 
     watch: {
       options : {
-        livereload: 7777
+        atBegin: true
       },
       assets: {
         files: ['app/styles/**/*.css','app/scripts/**/*.js'],
         tasks: ['concat']
       },
-      protractor: {
-        files: ['couchapp/_attachments/scripts/*.js','couchapp/_attachments/*.html','test/e2e/**/*.js'],
-        tasks: ['couch', 'protractor:auto']
+      e2e: {
+        options : {
+          atBegin: false // test server needs time to start
+        },
+        files: ['app/scripts/*.js','app/*.html','test/e2e/**/*.js'],
+        tasks: ['push:local', 'protractor:auto']
       },
       couchapp: {
+        options : {
+          livereload: 7777
+        },
         files: ['couchapp/**/*'],
-        tasks: ['couch']
+        tasks: ['push:local']
       }
     },
 
