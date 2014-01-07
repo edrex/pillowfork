@@ -22,11 +22,11 @@ angular.module('app.pages', ['ngRoute', 'pouchdb'])
         $scope.page = res;
       });
     } else {
-      $scope.page = undefined
+      $scope.page = undefined;
     }
-  
+ 
     pagesDb.query(ddoc+'/next-pages', { key: pageId || null })
     .then(function(res){
       $scope.nextPages = _.pluck(res.rows, 'value');
     });
-  })
+  });

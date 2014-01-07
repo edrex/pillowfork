@@ -13,7 +13,7 @@ angular.module('app.drafts', ['ngRoute', 'pouchdb'])
         mode: 'rich',
         placeholder: 'Page Body'
       });
-    }
-    var previousPageId = $routeParams.previousPageId;
+    };
+    $scope.previousPageId = $routeParams.previousPageId;
 
-  })
+  });
