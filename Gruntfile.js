@@ -156,11 +156,17 @@ module.exports = function(grunt) {
       protractor_install: {
         command: 'node ./node_modules/protractor/bin/webdriver-manager update'
       },
-      npm_install: { command: 'npm install' }
-      push_local: { command: 'erica push . local' },
-      push_prod: { command: 'erica push . prod' },
+      npm_install: { command: 'npm install' },
+      push_local: { command: 'erica push couchapp local' },
+      push_prod: { command: 'erica push couchapp prod' }
     }
   });
+
+  grunt.registerTask('build', ['jshint', 'concat']);
+
+  //couchapp
+  grunt.registerTask('push:local', ['shell:push_local']);
+  grunt.registerTask('push:prod', ['shell:push_prod']);
 
   //single run tests
   grunt.registerTask('test', ['jshint','test:unit', 'test:e2e']);
