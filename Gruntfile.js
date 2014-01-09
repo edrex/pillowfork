@@ -53,11 +53,12 @@ module.exports = function(grunt) {
 
     watch: {
       options : {
+        livereload: 7777,
         atBegin: true
       },
       assets: {
         files: ['app/styles/**/*.css','app/scripts/**/*.js'],
-        tasks: ['concat']
+        tasks: ['concat', 'push:local']
       },
       e2e: {
         options : {
@@ -67,9 +68,6 @@ module.exports = function(grunt) {
         tasks: ['push:local', 'protractor:auto']
       },
       couchapp: {
-        options : {
-          livereload: 7777
-        },
         files: ['couchapp/**/*'],
         tasks: ['push:local']
       }
@@ -103,14 +101,32 @@ module.exports = function(grunt) {
 
     protractor: {
       options: {
-        keepAlive: true,
         configFile: "./test/protractor.conf.js"
       },
       singlerun: {},
       auto: {
         options: {
+          keepAlive: true,
           args: {
             seleniumAddress: 'http://127.0.0.1:4444/wd/hub'
+          }
+        }
+      },
+      sauce: {
+        options: {
+          args: {
+            capabilities: {
+              // browserName: 'chrome',
+              // browserName: 'iPhone',
+              // browserName: 'android',
+              // browserName: 'firefox',
+              // browserName: 'safari',
+              browserName: 'internet explorer',
+              version: '10'
+            },
+            baseUrl: 'http://pillowfork.com',
+            sauceUser: 'pdxhub',
+            sauceKey: 'foo'
           }
         }
       }

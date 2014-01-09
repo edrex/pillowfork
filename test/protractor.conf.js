@@ -62,8 +62,8 @@ exports.config = {
     // If true, print colors to the terminal.
     showColors: true,
     // If true, include stack traces in failures.
-    includeStackTrace: true,
+    includeStackTrace: true
     // Default time to wait in ms before a test fails.
-    defaultTimeoutInterval: 10000
+    // defaultTimeoutInterval: 30000
   }
 };
