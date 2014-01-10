@@ -3,6 +3,10 @@
     "from": "/",
     "to": "index.html"
   },
+  {
+    "from": "/dev",
+    "to": "dev.html"
+  },
   { "from": "/pillowfork", "to": "../.." },
   { "from": "/pillowfork/*", "to": "../../*" },
   { "from": "/*", "to": "*" }

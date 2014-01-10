@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html data-ng-app='pillowfork'>
+  <head>
+    <title>Pillowfork</title>
+    <link rel="stylesheet" href="/styles/app.css" type="text/css">
+  </head>
+  <body>
+    <header></header>
+    <main id="view-container">
+      <div ng-view></div>
+    </main>
+    <footer></footer>
+  </body>
+
+  <script src='/components/lodash/dist/lodash.js'></script>
+  <script src='/components/pouchdb-nightly.min.js/index.js'></script>
+  <script src='/components/angular/angular.js'></script>
+  <script src='/components/angular-route/angular-route.js'></script>
+  <script src='/components/angular-pouchdb/angular-pouchdb.js'></script>
+
+  <script src='/scripts/pages.js'></script>
+  <script src='/scripts/drafts.js'></script>
+  <script src='/scripts/app.js'></script>
+
+  <script src="//localhost:7777/livereload.js"></script>
+</html>
