@@ -11,8 +11,7 @@
     "angular-animate": "1.2.5",
     "angular-mocks": "1.2.5",
     "angular-pouchdb": "~0.1.2",
-    "lodash": "~2.4.1",
-    "Medium.js": "https://github.com/jakiestfu/Medium.js.git"
+    "lodash": "~2.4.1"
   },
   "resolutions": {
     "angular": "1.2.5"
