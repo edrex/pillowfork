@@ -2,6 +2,7 @@
 .agignore
 node_modules
 bower_components
+/app/components
 /selenium
 /coverage
 /app/assets
