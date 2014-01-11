@@ -26,7 +26,13 @@
     "karma-coverage": "~0.1.0",
     "karma": "~0.10.2",
     "protractor": "~0.16.0",
-    "grunt-protractor-runner": "~0.1.6",
-    "grunt-shell-spawn": "~0.3.0"
+    "grunt-protractor-runner": "~0.2.1",
+    "grunt-shell-spawn": "~0.3.0",
+    "gulp-concat": "~2.1.7",
+    "gulp": "~3.3.0",
+    "gulp-exec": "~1.0.3",
+    "gulp-protractor": "0.0.2",
+    "tiny-lr": "0.0.5",
+    "gulp-livereload": "~0.1.1"
   }
 }

@@ -114,20 +114,7 @@ module.exports = function(grunt) {
       },
       sauce: {
         options: {
-          args: {
-            capabilities: {
-              // browserName: 'chrome',
-              // browserName: 'iPhone',
-              // browserName: 'android',
-              // browserName: 'firefox',
-              // browserName: 'safari',
-              browserName: 'internet explorer',
-              version: '10'
-            },
-            baseUrl: 'http://pillowfork.com',
-            sauceUser: 'pdxhub',
-            sauceKey: 'foo'
-          }
+          configFile: "./test/protractor.conf.js"
         }
       }
     },
