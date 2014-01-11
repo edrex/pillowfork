@@ -12,3 +12,11 @@
 #draftTitle, #draftBody {
     min-height: 1em;
 }
+
+#draftTitle {
+    border-bottom: 1px dotted black;
+}
+
+#draftBody {
+    background-color: #EEEEEE;
+}
