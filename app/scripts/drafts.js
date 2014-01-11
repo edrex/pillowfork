@@ -32,14 +32,26 @@ angular.module('app.drafts', ['ngRoute', 'pouchdb'])
     };
   })
 
-  .factory('draftsDb', function(pouchdb, $location) {
-    return pouchdb.create('pillowfork-drafts');
+  .factory('draftsDb', function() {
+    return new PouchDB('pillowfork-drafts');
   })
 
   .controller('DraftCtrl', function($scope, $routeParams, draftsDb) {
-    $scope.$watch('body', function(newValue, oldValue) {
-      console.log(newValue);
-    });
-    $scope.previousPageId = $routeParams.previousPageId;
+    $scope.doc = {
+      _id: $routeParams.prevPageId || "/",
+      title: '',
+      body: ''
+    };
 
+    draftsDb.get($scope.doc._id, function(err, res){
+      if (res) {
+        _.assign($scope.doc,res);
+        $scope.$digest()
+        $scope.$watch('doc', function(newValue, oldValue) {
+          draftsDb.put(newValue, {}, function(e, r) {
+            if (r) $scope.doc._rev = r.rev;
+          });
+        }, true);
+      }
+    });
   });
