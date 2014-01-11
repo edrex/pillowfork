@@ -2,7 +2,7 @@ module.exports = function(config) {
   config.set({
     files : [
       'app/components/lodash/dist/lodash.js',
-      'app/components/pouchdb-nightly.min.js/index.js',
+      'app/components/pouchdb-nightly/index.js',
       'app/components/angular/angular.js',
       'app/components/angular-route/angular-route.js',
       'app/components/angular-pouchdb/angular-pouchdb.js',
