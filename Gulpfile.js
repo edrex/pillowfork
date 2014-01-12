@@ -5,8 +5,8 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     server = lr();
 
-var env = process.env.ENV || 'local';
 
+var env = gulp.env.prod ? 'prod' : 'local';
 
 // BUILD
 gulp.task('push', function() { gulp.src('couchapp')
