@@ -3,13 +3,37 @@ var gulp = require('gulp'),
     protractor = require("gulp-protractor"),
     lr = require('tiny-lr'),
     livereload = require('gulp-livereload'),
-    server = lr();
-
+    server = lr(),
+    concat = require('gulp-concat');
 
 var env = gulp.env.prod ? 'prod' : 'local';
 
 // BUILD
-gulp.task('push', function() { gulp.src('couchapp')
+
+var scripts = [
+    'app/components/lodash/dist/lodash.js',
+    'app/components/pouchdb-nightly/index.js',
+    'app/components/angular/angular.js',
+    'app/components/angular-route/angular-route.js',
+    'app/components/angular-pouchdb/angular-pouchdb.js',
+    'app/scripts/pages.js',
+    'app/scripts/drafts.js',
+    'app/scripts/app.js'
+]
+var styles = [
+  'app/styles/app.css'
+]
+
+gulp.task('concat', function() {
+  gulp.src(scripts)
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('app/assets/'));
+  gulp.src(styles)
+    .pipe(concat('app.css'))
+    .pipe(gulp.dest('app/assets/'));
+});
+
+gulp.task('push', ['concat'], function() { gulp.src('couchapp')
   .pipe(exec('erica push <%= file.path %> <%= options.env %>', {env: env}))
   .pipe(livereload(server))
 });
@@ -55,10 +79,4 @@ gulp.task('autotest', function() {
 
 
 
-// var concat = require('gulp-concat');
 
-// gulp.task('scripts', function() {
-//   gulp.src('./lib/*.js')
-//     .pipe(concat("all.js"))
-//     .pipe(gulp.dest('./dist/'))
-// });
