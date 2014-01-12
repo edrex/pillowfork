@@ -38,7 +38,7 @@ angular.module('app.drafts', ['ngRoute', 'app.pages'])
 
   .controller('DraftCtrl', function($scope, $routeParams, draftsDb) {
     $scope.doc = {
-      _id: $routeParams.prevPageId || "/",
+      _id: $routeParams.predecessorId || "/",
       title: '',
       body: ''
     };
