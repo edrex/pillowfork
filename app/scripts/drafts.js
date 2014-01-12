@@ -47,11 +47,11 @@ angular.module('app.drafts', ['ngRoute', 'pouchdb'])
       if (res) {
         _.assign($scope.doc,res);
         $scope.$digest()
-        $scope.$watch('doc', function(newValue, oldValue) {
-          draftsDb.put(newValue, {}, function(e, r) {
-            if (r) $scope.doc._rev = r.rev;
-          });
-        }, true);
       }
+      $scope.$watch('doc', function(newValue, oldValue) {
+        draftsDb.put(newValue, {}, function(e, r) {
+          if (r) $scope.doc._rev = r.rev;
+        });
+      }, true);
     });
   });
