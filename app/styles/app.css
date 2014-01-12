@@ -9,14 +9,10 @@
   display: none !important;
 }
 
-#draftTitle, #draftBody {
-    min-height: 1em;
-}
-
-#draftTitle {
+.draft #title {
     border-bottom: 1px dotted black;
 }
 
-#draftBody {
+.draft #body {
     background-color: #EEEEEE;
 }
