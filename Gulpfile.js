@@ -13,7 +13,6 @@ var scripts = [
     'app/components/pouchdb-nightly/index.js',
     'app/components/angular/angular.js',
     'app/components/angular-route/angular-route.js',
-    'app/components/angular-pouchdb/angular-pouchdb.js',
     'app/scripts/pages.js',
     'app/scripts/drafts.js',
     'app/scripts/app.js'

@@ -9,8 +9,8 @@ angular.module('app.pages', ['ngRoute', 'pouchdb'])
     // PouchDB.replicate(config.uri, local, {continuous: true });
     // pouchdb.replicate(local, config.uri, {continuous: true });
     // return pouchdb.create('pages');
-    db = pouchdb.create(dbUri);
-    // db = new PouchDB(config.uri)
+    // db = pouchdb.create(dbUri);
+    db = new PouchDB(dbUri)
     return db;
   })
 
@@ -18,15 +18,15 @@ angular.module('app.pages', ['ngRoute', 'pouchdb'])
     var pageId = $routeParams.pageId;
 
     if (pageId) {
-      pagesDb.get(pageId).then(function(res){
+      pagesDb.get(pageId,function(err, res){
         $scope.page = res;
       });
     } else {
       $scope.page = undefined;
     }
  
-    pagesDb.query(ddoc+'/next-pages', { key: pageId || null })
-    .then(function(res){
+    pagesDb.query(ddoc+'/next-pages', { key: pageId || null }, function(err, res){
       $scope.nextPages = _.pluck(res.rows, 'value');
+      $scope.$digest()
     });
   });

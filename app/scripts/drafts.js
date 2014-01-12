@@ -1,4 +1,4 @@
-angular.module('app.drafts', ['ngRoute', 'pouchdb'])
+angular.module('app.drafts', ['ngRoute', 'app.pages'])
 
   .directive('contenteditable', function() {
     return {
