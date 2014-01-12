@@ -16,3 +16,11 @@
 .draft #body {
     background-color: #EEEEEE;
 }
+
+.draft #body {
+    background-color: #EEEEEE;
+}
+
+#publish {
+  float: right;
+}
