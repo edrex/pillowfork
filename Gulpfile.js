@@ -27,24 +27,19 @@ gulp.task('concat', function() {
     .pipe(gulp.dest('app/assets/'));
 });
 
-gulp.task('push', ['concat'], function() { gulp.src('couchapp')
+gulp.task('push', function() { gulp.src('couchapp')
   .pipe(exec('erica push <%= file.path %> <%= options.env %>', {env: env}))
   .pipe(livereload(server))
 });
 
-gulp.task('watch:couchapp', function() {
+gulp.task('default', function() {
   server.listen(7777, function (err) {
     if (err) return console.log(err);
-
     gulp.watch('couchapp/**/*', function(event) {
-      console.log('File '+event.path+' was '+event.type+', running tasks...');
+      console.log('File '+event.path+' was '+event.type+', pushing');
       gulp.run('push');
     });
   });
-});
-
-gulp.task('dev', function() {
-  gulp.run('watch:couchapp');
 });
 
 // TEST
