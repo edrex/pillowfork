@@ -8,8 +8,6 @@ var gulp = require('gulp'),
 
 var env = gulp.env.prod ? 'prod' : 'local';
 
-// BUILD
-
 var scripts = [
     'app/components/lodash/dist/lodash.js',
     'app/components/pouchdb-nightly/index.js',
@@ -42,9 +40,6 @@ gulp.task('default', function() {
   });
 });
 
-// TEST
-gulp.task('webdriver', protractor.webdriver);
-
 gulp.task('test', function() {
   gulp.src(["./tests/e2e"])
     .pipe(protractor.protractor({
@@ -53,15 +48,12 @@ gulp.task('test', function() {
 });
 
 gulp.task('autotest', function() {
-  if (env == 'local') {
-    gulp.run('webdriver');
-  }
   gulp.watch(['couchapp/**/*', 'test/e2e/**/*.js'], function(event) {
     console.log('File '+event.path+' was '+event.type+', running tests...');
     gulp.src(["./tests/e2e"])
       .pipe(protractor.protractor({
         configFile: "test/protractor.auto.conf.js"
-      })) 
+      }))
   });
 });
 
