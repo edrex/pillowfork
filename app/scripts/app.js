@@ -1,4 +1,4 @@
-angular.module('pillowfork', ['ngRoute', 'pouchdb', 'app.pages', 'app.drafts'])
+angular.module('pillowfork', ['ngRoute', 'app.pages', 'app.drafts'])
 
   .constant('TPL_PATH', '/templates')
 

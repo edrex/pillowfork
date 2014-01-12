@@ -1,8 +1,8 @@
-angular.module('app.pages', ['ngRoute', 'pouchdb'])
+angular.module('app.pages', ['ngRoute'])
   .constant('ddoc', 'pillowfork')
   .constant('db', 'pillowfork')
 
-  .factory('pagesDb', function(pouchdb, $location, db) {
+  .factory('pagesDb', function($location, db) {
     var c = $location;
     var dbUri = c.protocol() + '://' + c.host() + (c.port() ? ':'+ c.port() : '') + '/' + db;
        
