@@ -19,17 +19,11 @@ var scripts = [
     'app/scripts/pages.js',
     'app/scripts/drafts.js',
     'app/scripts/app.js'
-]
-var styles = [
-  'app/styles/app.css'
-]
+];
 
 gulp.task('concat', function() {
   gulp.src(scripts)
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('app/assets/'));
-  gulp.src(styles)
-    .pipe(concat('app.css'))
     .pipe(gulp.dest('app/assets/'));
 });
 
