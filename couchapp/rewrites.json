@@ -1,13 +1,9 @@
 [
-  {
-    "from": "/",
-    "to": "index.html"
-  },
-  {
-    "from": "/dev",
-    "to": "dev.html"
-  },
-  { "from": "/pillowfork", "to": "../.." },
-  { "from": "/pillowfork/*", "to": "../../*" },
-  { "from": "/*", "to": "*" }
+  { "from": "/",              "to": "index.html"},
+  { "from": "/dev",           "to": "dev.html"},
+  { "from": "/pillowfork",    "to": "../.." },
+  { "from": "/pillowfork/*",  "to": "../../*" },
+  { "from": "/_browserid",    "to": "../../../_browserid" },
+  { "from": "/_browserid/*",  "to": "../../../_browserid/*" },
+  { "from": "/*",             "to": "*" }
 ]
