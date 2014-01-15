@@ -32,12 +32,14 @@ gulp.task('concat', function() {
     .pipe(gulp.dest('app/assets/'));
 });
 
-gulp.task('push', function() { gulp.src('couchapp')
-  .pipe(exec('erica push <%= file.path %> <%= options.env %>', {env: env}))
-  .pipe(livereload(server))
+gulp.task('push', function() { 
+  return gulp.src('couchapp')
+    .pipe(exec('erica push <%= file.path %> <%= options.env %>', {env: env}))
+    .pipe(livereload(server))
 });
 
-gulp.task('default', function() {
+// no concat (dev mode)
+gulp.task('watch', function() {
   server.listen(7777, function (err) {
     if (err) return console.log(err);
     gulp.watch('couchapp/**/*', function(event) {
