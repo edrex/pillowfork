@@ -9,6 +9,18 @@
   display: none !important;
 }
 
+.draft{
+    border: 1px dotted red;
+}
+
+.new{
+    background-color: #F9F9FF;
+}
+
+.new:hover{
+    background-color: #F0F0FF;
+}
+
 .draft #title {
     border-bottom: 1px dotted black;
 }
