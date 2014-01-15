@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="1353.9366"
+   height="945.20825"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="display elements.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="76.699298"
-     inkscape:cy="574.60536"
+     inkscape:cx="744.32164"
+     inkscape:cy="550.6422"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -35,7 +35,11 @@
      inkscape:window-height="756"
      inkscape:window-x="4"
      inkscape:window-y="0"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     fit-margin-left="0.1"
+     fit-margin-top="0.1"
+     fit-margin-right="0.1"
+     fit-margin-bottom="0.1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -51,9 +55,10 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(667.62234,-83.190756)">
     <rect
-       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="rect2985"
        width="622.85712"
        height="365.71429"
@@ -104,12 +109,12 @@
          id="tspan3767"
          x="111.42857"
          y="249.50504"
-         style="line-height:125%;font-size:24px">Lorem ipsum bacon</tspan><tspan
+         style="font-size:24px;line-height:125%">Lorem ipsum bacon</tspan><tspan
          sodipodi:role="line"
          x="111.42857"
-         y="299.50504"
+         y="279.50504"
          id="tspan3769"
-         style="line-height:125%;font-size:24px">Pork chops with gravy</tspan></text>
+         style="font-size:24px;line-height:125%">Pork chops with gravy</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M -331.42857,452.36218 88.571429,275.21933 91.428571,272.36218"
@@ -415,7 +420,7 @@ rut6uwMA4FPWeZ7/mVlvhwAAfMi+AROwCa3XuItpAAAAAElFTkSuQmCC
     <flowRoot
        xml:space="preserve"
        id="flowRoot3988"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:10px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
          id="flowRegion3990"><rect
            id="rect3992"
            width="22.857143"
