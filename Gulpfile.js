@@ -9,19 +9,26 @@ var gulp = require('gulp'),
 var env = gulp.env.prod ? 'prod' : 'local';
 
 var scripts = [
-    'app/components/lodash/dist/lodash.js',
-    'app/components/pouchdb-nightly/index.js',
-    'app/components/angular/angular.js',
-    'app/components/angular-route/angular-route.js',
-    'app/scripts/pages.js',
-    'app/scripts/drafts.js',
-    'app/scripts/app.js'
   'app/scripts/sha1.js',
+  'app/components/lodash/dist/lodash.js',
+  'app/components/pouchdb-nightly/index.js',
+  'app/components/angular/angular.js',
+  'app/components/angular-route/angular-route.js',
+  'app/scripts/pages.js',
+  'app/scripts/drafts.js',
+  'app/scripts/app.js'
 ];
+var styles = [
+  'app/components/normalize-css/normalize.css',
+  'app/styles/app.css'
+]
 
 gulp.task('concat', function() {
   gulp.src(scripts)
     .pipe(concat('app.js'))
+    .pipe(gulp.dest('app/assets/'));
+  gulp.src(styles)
+    .pipe(concat('app.css'))
     .pipe(gulp.dest('app/assets/'));
 });
 

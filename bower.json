@@ -11,9 +11,7 @@
     "angular-animate": "1.2.5",
     "angular-mocks": "1.2.5",
     "lodash": "~2.4.1",
-    "pouchdb-nightly": "http://download.pouchdb.com/pouchdb-nightly.js"
-  },
-  "resolutions": {
-    "angular": "1.2.5"
+    "pouchdb-nightly": "http://download.pouchdb.com/pouchdb-nightly.js",
+    "normalize-css": "~2.1.3"
   }
 }
