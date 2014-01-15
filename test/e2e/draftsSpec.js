@@ -1,28 +1,25 @@
+function checkDraft(title, body) {
+    expect($('#title').getText()).toBe(title);
+    expect($('#body').getText()).toBe(body);    
+}
+
 describe('Drafts', function() {
   it('should allow editing title and body', function() {
+    var title = 'Foo page',
+        body = 'Foo body'
     browser.get('');
+    // expect($('#draft-link').getText()).toBe('');
 
-    expect($('#new-page').isDisplayed()).toBe(true);
-    expect($('#draft-page').isDisplayed()).toBe(false);
-
-    $('#new-page').click();
+    $('#draft-link').click();
     $('#title').click();
-    $('#title').sendKeys("Foo");
+    $('#title').sendKeys(title);
     $('#body').click();
-    $('#body').sendKeys("Bar");
-    expect($('#title').getText()).toBe('Foo');
-    expect($('#body').getText()).toBe('Bar');
-
-    // Check that saving locally works
-    // Back
+    $('#body').sendKeys(body);
+    checkDraft(title, body);
     browser.navigate().back();
+    expect($('#draft-link').getText()).toBe(title);
 
-    // expect($('#new-page').isDisplayed()).toBe(false);
-    // expect($('#draft-page').isDisplayed()).toBe(true);
-
-    $('#new-page').click();
-    
-    expect($('#title').getText()).toBe('Foo');
-    expect($('#body').getText()).toBe('Bar');
+    $('#draft-link').click();
+    checkDraft(title,body);
   });
 });

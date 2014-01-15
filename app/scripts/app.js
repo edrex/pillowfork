@@ -3,7 +3,7 @@ angular.module('pillowfork', ['ngRoute', 'app.pages', 'app.drafts'])
   .constant('TPL_PATH', '/templates')
 
   .config(function($routeProvider, TPL_PATH) {
-    $routeProvider.when('/draft/:predecessorId?', {
+    $routeProvider.when('/draft/:pageId?', {
       controller : 'DraftCtrl',
       templateUrl : TPL_PATH + '/draft.html'
     });

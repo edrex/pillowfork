@@ -36,42 +36,45 @@ angular.module('app.drafts', ['ngRoute', 'app.pages'])
     return new PouchDB('pillowfork-drafts');
   })
 
-  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, draftsDb, pagesDb) {
-    $scope.publish = function() {
-      var d = $scope.doc;
-      var page = {
-        predecessor: d._id,
-        title: d.title,
-        body: d.body
-      }
-      if (d._id == '/') delete page.predecessor;
-      page._id = hex_sha1(JSON.stringify(page));
-      pagesDb.put(page, function(e,r){
-        if (r && r.id) {
-          draftsDb.remove($scope.doc);
-          $location.path('/'+r.id);
-          $location.replace();
-          $rootScope.$digest()
-        }
-      });
-    };
-    $scope.doc = {
-      _id: $routeParams.predecessorId || "/",
+  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, draftsDb, remotePagesDb) {
+    $scope.draft = {
+      // note that the draft ID is the ID of the predecessor page
+      _id: $routeParams.pageId || "/",
       title: '',
       body: ''
     };
 
-    draftsDb.get($scope.doc._id, function(err, res){
+    draftsDb.get($scope.draft._id, function(err, res){
       if (res) {
-        _.assign($scope.doc,res);
+        _.assign($scope.draft,res);
         $scope.$digest()
       }
-      $scope.$watch('doc', function(newValue, oldValue) {
+      $scope.$watch('draft', function(newValue, oldValue) {
         if (newValue.body !== oldValue.body || newValue.title !== oldValue.title) {
           draftsDb.put(newValue, {}, function(e, r) {
-            if (r) $scope.doc._rev = r.rev;
+            if (r) $scope.draft._rev = r.rev;
           });
         }
       }, true);
     });
+    $scope.publish = function() {
+      var page = {
+        predecessors: [$scope.draft._id],
+        title: $scope.draft.title,
+        body: $scope.draft.body
+      }
+      if ($scope.draft._id == '/') delete page.predecessors;
+      console.log(JSON.stringify(page));
+      page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
+      remotePagesDb.put(page, function(e,r){
+        if (r && r.id) {
+          draftsDb.remove($scope.draft);
+          // sending to parent currently, to sidestep async prob.
+          // TODO: wait for sync before redirect, via change listener
+          $location.path('/'+($routeParams.pageId || ''));
+          $location.replace();
+          $rootScope.$digest();
+        }
+      });
+    };
   });

@@ -1,5 +1,7 @@
 <div class="page" ng-show='page' ng-cloak>
-  <h1>{{page.title}}</h1>
+  <div class="header">
+    <h1>{{page.title}}</h1>
+  </div>
   <div class="body">{{page.body}}</div>
 </div>
 <div class="page-list" ng-cloak>
@@ -8,12 +10,9 @@
       <h1 class="title">{{ nextPage.title }}</h1>
     </div>
   </a>
-  <a id="new-page" class="page" ng-show=' !page || page._id' ng-href="#/draft/{{ page._id }}">
+  <a id="draft-link" class="page {{draft.title || draft.body ? 'draft' : 'new'}}" ng-href="#/draft/{{ page._id }}" ng-controller="DraftCtrl">
     <div class="page-header">
-    </div>
-  </a>
-  <a id="draft-page" class="page" ng-show='false' ng-href="#/draft/{{ page._id }}">
-    <div class="page-header">
+      <h1>{{ draft.title || (pageId ? "Continue this story" : "Start a story. Begin a book.") }}</h1>
     </div>
   </a>
 </div>

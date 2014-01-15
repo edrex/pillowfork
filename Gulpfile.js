@@ -16,6 +16,7 @@ var scripts = [
     'app/scripts/pages.js',
     'app/scripts/drafts.js',
     'app/scripts/app.js'
+  'app/scripts/sha1.js',
 ];
 
 gulp.task('concat', function() {

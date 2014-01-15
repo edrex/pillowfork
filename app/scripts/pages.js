@@ -2,30 +2,33 @@ angular.module('app.pages', ['ngRoute'])
   .constant('ddoc', 'pillowfork')
   .constant('db', 'pillowfork')
 
-  .factory('pagesDb', function($location, db) {
+  .factory('dbUri', function($location, db) {
     var c = $location;
-    var dbUri = c.protocol() + '://' + c.host() + (c.port() ? ':'+ c.port() : '') + '/' + db;
+    return c.protocol() + '://' + c.host() + (c.port() ? ':'+ c.port() : '') + '/' + db;
+  })
        
-    // PouchDB.replicate(config.uri, local, {continuous: true });
-    // pouchdb.replicate(local, config.uri, {continuous: true });
-    // return pouchdb.create('pages');
-    // db = pouchdb.create(dbUri);
-    db = new PouchDB(dbUri)
-    return db;
+  .factory('remotePagesDb', function(dbUri) {
+    return new PouchDB(dbUri);
+  })
+
+  .factory('pagesDb', function(remotePagesDb) {
+    local = new PouchDB('pillowfork-pages');
+    PouchDB.replicate(remotePagesDb, local, {continuous: true });
+    return local;
   })
 
   .controller('PageCtrl', function($scope, $routeParams, pagesDb, ddoc) {
-    var pageId = $routeParams.pageId;
+    $scope.pageId = $routeParams.pageId;
 
-    if (pageId) {
-      pagesDb.get(pageId,function(err, res){
+    if ($scope.pageId) {
+      pagesDb.get($scope.pageId,function(err, res){
         $scope.page = res;
       });
     } else {
       $scope.page = undefined;
     }
  
-    pagesDb.query(ddoc+'/next-pages', { key: pageId || null }, function(err, res){
+    pagesDb.query(ddoc+'/next-pages', { key: $scope.pageId || null }, function(err, res){
       $scope.nextPages = _.pluck(res.rows, 'value');
       $scope.$digest()
     });
