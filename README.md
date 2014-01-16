@@ -37,7 +37,7 @@ Pillowfork uses a data structure which is similar to that used by [Git](http://w
 
 ## Installation
 
-## Prereqs
+### Prereqs
 
  1. Install or provision a CouchDB instance.
   - Iriscouch works, but we found the free plan to be too unreliable. 
