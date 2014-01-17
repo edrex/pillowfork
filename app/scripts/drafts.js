@@ -51,8 +51,10 @@ angular.module('app.drafts', ['ngRoute', 'app.pages'])
       }
       $scope.$watch('draft', function(newValue, oldValue) {
         if (newValue.body !== oldValue.body || newValue.title !== oldValue.title) {
-          draftsDb.put(newValue, {}, function(e, r) {
-            if (r) $scope.draft._rev = r.rev;
+          draftsDb.put(newValue, {}).then(function(r) {
+            if (r.rev) $scope.draft._rev = r.rev;
+          },function(e) {
+            // DO SOMETHING HERE
           });
         }
       }, true);
@@ -64,10 +66,9 @@ angular.module('app.drafts', ['ngRoute', 'app.pages'])
         body: $scope.draft.body
       }
       if ($scope.draft._id == '/') delete page.predecessors;
-      console.log(JSON.stringify(page));
       page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
-      remotePagesDb.put(page, function(e,r){
-        if (r && r.id) {
+      remotePagesDb.put(page).then(function(r){
+        if (r.id) {
           draftsDb.remove($scope.draft);
           // sending to parent currently, to sidestep async prob.
           // TODO: wait for sync before redirect, via change listener
@@ -75,6 +76,8 @@ angular.module('app.drafts', ['ngRoute', 'app.pages'])
           $location.replace();
           $rootScope.$digest();
         }
+      }, function(e){
+        // DO SOMETHING HERE
       });
     };
   });

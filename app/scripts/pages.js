@@ -21,15 +21,19 @@ angular.module('app.pages', ['ngRoute'])
     $scope.pageId = $routeParams.pageId;
 
     if ($scope.pageId) {
-      pagesDb.get($scope.pageId,function(err, res){
+      pagesDb.get($scope.pageId).then(function(res){
         $scope.page = res;
+      }, function(err){
+        // DO SOMETHING HERE
       });
     } else {
       $scope.page = undefined;
     }
  
-    pagesDb.query(ddoc+'/next-pages', { key: $scope.pageId || null }, function(err, res){
+    pagesDb.query(ddoc+'/next-pages', { key: $scope.pageId || null }).then(function(res){
       $scope.nextPages = _.pluck(res.rows, 'value');
       $scope.$digest()
+    }, function(err){
+      // DO SOMETHING HERE
     });
   });
