@@ -1,6 +1,7 @@
 [
   { "from": "/",              "to": "index.html"},
   { "from": "/dev",           "to": "dev.html"},
+  { "from": "/splash",        "to": "splash/index.html"},
   { "from": "/pillowfork",    "to": "../.." },
   { "from": "/pillowfork/*",  "to": "../../*" },
   { "from": "/_browserid",    "to": "../../../_browserid" },
