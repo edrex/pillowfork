@@ -12,6 +12,12 @@ angular.module('app.pages', ['ngRoute'])
   })
 
   .factory('pagesDb', function(remotePagesDb) {
+    // fall back to remote db for non-indexedDb browsers
+    // drafts still get localStorage
+    if (!indexedDB) {
+      return remotePagesDb;
+    }
+
     localDb = new PouchDB('pillowfork-pages');
     remotePagesDb.replicate.to(localDb, {continuous: true});
     return localDb;
