@@ -8,13 +8,13 @@ angular.module('app.pages', ['ngRoute'])
   })
        
   .factory('remotePagesDb', function(dbUri) {
-    return new PouchDB(dbUri);
+    return new PouchDB(dbUri, {ajax: {cache: false}});
   })
 
   .factory('pagesDb', function(remotePagesDb) {
-    local = new PouchDB('pillowfork-pages');
-    PouchDB.replicate(remotePagesDb, local, {continuous: true });
-    return local;
+    localDb = new PouchDB('pillowfork-pages');
+    remotePagesDb.replicate.to(localDb, {continuous: true});
+    return localDb;
   })
 
   .controller('PageCtrl', function($scope, $routeParams, pagesDb, ddoc) {
