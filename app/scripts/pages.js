@@ -14,7 +14,7 @@ angular.module('app.pages', ['ngRoute'])
   .factory('pagesDb', function(remotePagesDb) {
     // fall back to remote db for non-indexedDb browsers
     // drafts still get localStorage
-    if (!indexedDB) {
+    if (!window.indexedDB) {
       return remotePagesDb;
     }
 
