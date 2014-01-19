@@ -1,25 +1,41 @@
-function checkDraft(title, body) {
-    expect($('#title').getText()).toBe(title);
-    expect($('#body').getText()).toBe(body);    
+function expectPageContents(draft) {
+    expect($('#title').getText()).toBe(draft.title);
+    expect($('#body').getText()).toBe(draft.body);    
 }
 
-describe('Drafts', function() {
-  it('should allow editing title and body', function() {
-    var title = 'Foo page',
-        body = 'Foo body'
+function testDraftCreate(draft) {
     browser.get('');
     // expect($('#draft-link').getText()).toBe('');
 
     $('#draft-link').click();
+    expectPageContents({title: '', body: ''});
     $('#title').click();
-    $('#title').sendKeys(title);
+    $('#title').sendKeys(draft.title);
     $('#body').click();
-    $('#body').sendKeys(body);
-    checkDraft(title, body);
+    $('#body').sendKeys(draft.body);
+    expectPageContents(draft);
     browser.navigate().back();
-    expect($('#draft-link').getText()).toBe(title);
+    expect($('#draft-link').getText()).toBe(draft.title);
 
     $('#draft-link').click();
-    checkDraft(title,body);
+    expectPageContents(draft);
+}
+
+describe('Drafts', function() {
+/* after Each, indexedDB.deleteDatabase('_pouch_pillowfork-drafts') */
+  it('should allow editing title and body', function() {
+
+    testDraftCreate({
+      title: 'Foo page',  
+      body: 'Foo body'
+    });
   });
+
+  // it('should save a draft after the first key press', function() {
+  //   testDraftCreate({
+  //     title: 'F',  
+  //     body: ''
+  //   });
+  // });
+
 });
