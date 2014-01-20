@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="/styles/app.css" type="text/css">
   </head>
   <body>
-    <header></header>
+    <header>
+      <ul id="notices" ng-controller="NoticesCtrl">
+        <li ng-repeat="notice in notices.all()" class="notice {{notice.type}}">{{notice.message}}</li>
+      </ul>
+    </header>
     <main id="view-container">
       <div ng-view></div>
     </main>

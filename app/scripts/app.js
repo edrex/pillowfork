@@ -13,6 +13,10 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
     });
   })
 
+  .controller('NoticesCtrl', function($scope, notices) {
+    $scope.notices = notices;
+  })
+
   .controller('PageCtrl', function($scope, $routeParams, pages) {
     $scope.pageId = $routeParams.pageId;
 
@@ -35,7 +39,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
     });
   })
 
-  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, draftsDb, remotePagesDb) {
+  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, notices, draftsDb, remotePagesDb) {
     $scope.draft = {
       // note that the draft ID is the ID of the predecessor page
       _id: $routeParams.pageId || "/",
@@ -76,6 +80,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
           $rootScope.$digest();
         }
       }, function(e){
+        notices.push({message: e.message, type: 'error'});
         // DO SOMETHING HERE
       });
     };

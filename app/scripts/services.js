@@ -30,5 +30,24 @@ angular.module('app.services', [])
 
   .factory('draftsDb', function() {
     return new PouchDB('pillowfork-drafts');
+  })
+
+  .factory('notices', function($rootScope) {
+    var msgs = [];
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+      msgs.length = 0;
+    });
+
+    return {
+      push: function(msg) {
+        $rootScope.$apply(function(){
+          msgs.push(msg);
+        })
+      },
+      all: function() {
+        return msgs;
+      }
+    }
   });
 
