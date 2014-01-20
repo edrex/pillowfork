@@ -13,7 +13,7 @@ angular.module('app.directives', [])
         };
  
         // Listen for change events to enable binding
-        element.on('blur keyup change', function() {
+        element.on('input', function() {
           scope.$apply(read);
         });
         read(); // initialize
