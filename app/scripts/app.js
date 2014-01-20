@@ -1,4 +1,4 @@
-angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
+angular.module('pillowfork', ['ngRoute', 'ngSanitize', 'app.services', 'app.directives'])
 
   .constant('TPL_PATH', '/templates')
 

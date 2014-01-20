@@ -14,6 +14,7 @@ var scripts = [
   'app/components/pouchdb-nightly/index.js',
   'app/components/angular/angular.js',
   'app/components/angular-route/angular-route.js',
+  'app/components/angular-sanitize/angular-sanitize.js',
   'app/scripts/services.js',
   'app/scripts/directives.js',
   'app/scripts/app.js'

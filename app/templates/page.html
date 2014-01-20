@@ -1,18 +1,18 @@
 <div class="page" ng-show='page' ng-cloak>
   <div class="header">
-    <h1>{{page.title}}</h1>
+    <h1 ng-bind-html="page.title"></h1>
   </div>
-  <div class="body">{{page.body}}</div>
+  <div class="body" ng-bind-html="page.body"></div>
 </div>
 <div class="page-list" ng-cloak>
   <a class="page" ng-repeat='nextPage in nextPages' ng-href="#/{{ nextPage._id }}">
     <div class="page-header">
-      <h1 class="title">{{ nextPage.title }}</h1>
+      <h1 class="title" ng-bind-html="nextPage.title"></h1>
     </div>
   </a>
   <a id="draft-link" class="page {{draft.title || draft.body ? 'draft' : 'new'}}" ng-href="#/draft/{{ page._id }}">
     <div class="page-header">
-      <h1>{{ draft.title || (pageId ? "Respond to this page" : "Start something") }}</h1>
+      <h1 ng-bind-html="draft.title || (pageId ? "Respond to this page" : "Start something")"></h1>
     </div>
   </a>
 </div>
