@@ -22,20 +22,22 @@ function testDraftCreate(draft) {
 }
 
 describe('Drafts', function() {
-/* after Each, indexedDB.deleteDatabase('_pouch_pillowfork-drafts') */
-  it('should allow editing title and body', function() {
-
-    testDraftCreate({
-      title: 'Foo page',  
-      body: 'Foo body'
+    afterEach(function() {
+        browser.executeScript(function(){
+            PouchDB.destroy('pillowfork-drafts');
+        });
+    })
+    it('should allow editing title and body', function() {
+        testDraftCreate({
+            title: 'Foo page',  
+            body: 'Foo body'
+        });
     });
-  });
 
-  // it('should save a draft after the first key press', function() {
-  //   testDraftCreate({
-  //     title: 'F',  
-  //     body: ''
-  //   });
-  // });
-
+    it('should save a draft after the first key press', function() {
+        testDraftCreate({
+            title: 'F',  
+            body: ''
+        });
+    });
 });
