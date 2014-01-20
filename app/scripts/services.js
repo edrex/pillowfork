@@ -78,6 +78,7 @@ angular.module('app.services', [])
           return db.remove(draft);
         }, function(e){
           notices.push({message: e.message, type: 'error'});
+          throw e;
         });
       }
     }
