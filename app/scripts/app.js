@@ -39,7 +39,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
     });
   })
 
-  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, notices, draftsDb, remotePagesDb) {
+  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, notices, draftsDb, pages) {
     $scope.draft = {
       // note that the draft ID is the ID of the predecessor page
       _id: $routeParams.pageId || "/",
@@ -70,7 +70,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
       }
       if ($scope.draft._id == '/') delete page.predecessors;
       page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
-      remotePagesDb.put(page).then(function(r){
+      pages.put(page).then(function(r){
         if (r.id) {
           draftsDb.remove($scope.draft);
           // sending to parent currently, to sidestep async prob.

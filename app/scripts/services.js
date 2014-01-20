@@ -24,7 +24,8 @@ angular.module('app.services', [])
 
     return {
       get: function(id) { return db.get(id)},
-      sequels: function(id) { return db.query(ddoc+'/next-pages', { key: id || null })}
+      sequels: function(id) { return db.query(ddoc+'/next-pages', { key: id || null })},
+      put: function(page) { return remotePagesDb.put(page) }
     }
   })
 
