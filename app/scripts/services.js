@@ -18,13 +18,26 @@ angular.module('app.services', [])
     // fully local copy of pages data for indexedDb browsers
     if (window.indexedDB) {
       var localDb = new PouchDB('pillowfork-pages');
-      remotePagesDb.replicate.to(localDb, {continuous: true});
+      remotePagesDb.replicate.to(localDb, {
+        filter: ddoc+'/pages',
+        continuous: true,
+      });
       db = localDb;
     }
 
     return {
       get: function(id) { return db.get(id)},
-      sequels: function(id) { return db.query(ddoc+'/next-pages', { key: id || null })},
+      sequels: function(id) { return db.query(function(doc) {
+        if (doc.title && doc.body) {
+          if (!doc.predecessors) {
+            emit (null, doc)
+          } else {
+            doc.predecessors.forEach(function(p){
+              emit(p, doc);
+            });
+          }
+        }
+      }, { key: id || null })},
       put: function(page) { return remotePagesDb.put(page) }
     }
   })
