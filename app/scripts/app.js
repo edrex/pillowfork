@@ -39,7 +39,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
     });
   })
 
-  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, notices, draftsDb, pages) {
+  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, notices, drafts, pages) {
     $scope.draft = {
       // note that the draft ID is the ID of the predecessor page
       _id: $routeParams.pageId || "/",
@@ -47,14 +47,12 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
       body: ''
     };
 
-    draftsDb.get($scope.draft._id, function(err, res){
-      if (res) {
-        _.assign($scope.draft,res);
-        $scope.$digest()
-      }
+    drafts.get($scope.draft._id).then(function(res){
+      _.assign($scope.draft,res);
+      $scope.$digest()
       $scope.$watch('draft', function(newValue, oldValue) {
         if (newValue.body !== oldValue.body || newValue.title !== oldValue.title) {
-          draftsDb.put(newValue, {}).then(function(r) {
+          drafts.put(newValue, {}).then(function(r) {
             if (r.rev) $scope.draft._rev = r.rev;
           },function(e) {
             // DO SOMETHING HERE
@@ -72,7 +70,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
       page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
       pages.put(page).then(function(r){
         if (r.id) {
-          draftsDb.remove($scope.draft);
+          drafts.remove($scope.draft);
           // sending to parent currently, to sidestep async prob.
           // TODO: wait for sync before redirect, via change listener
           $location.path('/'+($routeParams.pageId || ''));

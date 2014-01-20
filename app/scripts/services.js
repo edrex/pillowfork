@@ -29,8 +29,24 @@ angular.module('app.services', [])
     }
   })
 
-  .factory('draftsDb', function() {
-    return new PouchDB('pillowfork-drafts');
+  .factory('drafts', function() {
+    var db = new PouchDB('pillowfork-drafts');
+    return {
+      get: function(id) { 
+        id = id || "/";
+        return db.get(id).then(null, function(e){
+          // if doc doesn't exist, return an empty doc
+          return {
+            _id: id,
+            title: '',
+            body: ''
+          }
+        });
+      },
+      put: function(draft) { return db.put(draft) },
+      remove: function(draft) { return db.remove(draft) }
+    }
+    // return db;
   })
 
   .factory('notices', function($rootScope) {
