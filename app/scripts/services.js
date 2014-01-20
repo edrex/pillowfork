@@ -42,7 +42,7 @@ angular.module('app.services', [])
     }
   })
 
-  .factory('drafts', function() {
+  .factory('drafts', function(pages, notices) {
     var db = new PouchDB('pillowfork-drafts');
     return {
       get: function(id) { 
@@ -56,8 +56,26 @@ angular.module('app.services', [])
           }
         });
       },
-      put: function(draft) { return db.put(draft) },
-      remove: function(draft) { return db.remove(draft) }
+      put: function(draft) { 
+        console.log("saved draft:", draft);
+        return db.put(draft).then(function(r) {
+          if (r.rev) draft._rev = r.rev;
+        }
+      )},
+      publish: function(draft) {
+        var page = {
+          predecessors: [draft._id],
+          title: draft.title,
+          body: draft.body
+        }
+        if (draft._id == '/') delete page.predecessors;
+        page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
+        return pages.put(page).then(function(r){
+          return db.remove(draft);
+        }, function(e){
+          notices.push({message: e.message, type: 'error'});
+        });
+      }
     }
     // return db;
   })

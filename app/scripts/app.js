@@ -17,7 +17,7 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
     $scope.notices = notices;
   })
 
-  .controller('PageCtrl', function($scope, $routeParams, pages) {
+  .controller('PageCtrl', function($scope, $routeParams, pages, drafts) {
     $scope.pageId = $routeParams.pageId;
 
     if ($scope.pageId) {
@@ -33,53 +33,28 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
  
     pages.sequels($scope.pageId).then(function(res){
       $scope.nextPages = _.pluck(res.rows, 'value');
+    drafts.get($routeParams.pageId).then(function(r){
+      $scope.draft = r;
       $scope.$digest()
-    }, function(err){
-      // DO SOMETHING HERE
     });
   })
 
-  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, notices, drafts, pages) {
-    $scope.draft = {
-      // note that the draft ID is the ID of the predecessor page
-      _id: $routeParams.pageId || "/",
-      title: '',
-      body: ''
-    };
+  .controller('DraftCtrl', function($scope, $location, $rootScope, $routeParams, drafts) {
 
-    drafts.get($scope.draft._id).then(function(res){
-      _.assign($scope.draft,res);
+    drafts.get($routeParams.pageId).then(function(res){
+      $scope.draft = res;
       $scope.$digest()
-      $scope.$watch('draft', function(newValue, oldValue) {
-        if (newValue.body !== oldValue.body || newValue.title !== oldValue.title) {
-          drafts.put(newValue, {}).then(function(r) {
-            if (r.rev) $scope.draft._rev = r.rev;
-          },function(e) {
-            // DO SOMETHING HERE
-          });
-        }
+      $scope.$watch('[draft.title, draft.body]', function(n, o) {
+        drafts.put($scope.draft)
       }, true);
     });
     $scope.publish = function() {
-      var page = {
-        predecessors: [$scope.draft._id],
-        title: $scope.draft.title,
-        body: $scope.draft.body
-      }
-      if ($scope.draft._id == '/') delete page.predecessors;
-      page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
-      pages.put(page).then(function(r){
-        if (r.id) {
-          drafts.remove($scope.draft);
-          // sending to parent currently, to sidestep async prob.
-          // TODO: wait for sync before redirect, via change listener
-          $location.path('/'+($routeParams.pageId || ''));
-          $location.replace();
-          $rootScope.$digest();
-        }
-      }, function(e){
-        notices.push({message: e.message, type: 'error'});
-        // DO SOMETHING HERE
+      drafts.publish($scope.draft).then(function(r){
+        // sending to parent currently, to sidestep async prob.
+        // TODO: wait for sync before redirect, via change listener
+        $location.path('/'+($routeParams.pageId || ''));
+        $location.replace();
+        $rootScope.$apply();
       });
     };
   });
