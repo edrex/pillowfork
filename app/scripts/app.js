@@ -31,8 +31,21 @@ angular.module('pillowfork', ['ngRoute', 'app.services', 'app.directives'])
       $scope.page = undefined;
     }
  
-    pages.sequels($scope.pageId).then(function(res){
-      $scope.nextPages = _.pluck(res.rows, 'value');
+    function loadSequels() {
+      pages.sequels($scope.pageId).then(function(res){
+        $scope.nextPages = _.pluck(res.rows, 'value');
+        $scope.$digest()
+      }, function(err){
+        // DO SOMETHING HERE
+      });
+    }
+
+    loadSequels();
+
+    $scope.$on('pagesChanged', function() {
+      loadSequels();
+    });
+
     drafts.get($routeParams.pageId).then(function(r){
       $scope.draft = r;
       $scope.$digest()

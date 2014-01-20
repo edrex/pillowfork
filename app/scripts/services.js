@@ -12,7 +12,7 @@ angular.module('app.services', [])
     return new PouchDB(dbUri, {ajax: {cache: false}});
   })
 
-  .factory('pages', function(remotePagesDb, ddoc) {
+  .factory('pages', function($rootScope, remotePagesDb, ddoc) {
     var db = remotePagesDb;
     
     // fully local copy of pages data for indexedDb browsers
@@ -21,6 +21,10 @@ angular.module('app.services', [])
       remotePagesDb.replicate.to(localDb, {
         filter: ddoc+'/pages',
         continuous: true,
+        onChange: function(change) {
+          $rootScope.$broadcast('pagesChanged');
+          console.log(change)
+        }
       });
       db = localDb;
     }
