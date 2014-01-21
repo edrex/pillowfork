@@ -17,6 +17,21 @@ angular.module('pillowfork', ['ngRoute', 'ngSanitize', 'app.services', 'app.dire
     $scope.notices = notices;
   })
 
+  .controller('SessionCtrl', function($scope, session) {
+    session.get().then(function(r){
+      // null if not signed in
+      $scope.user = r.data.userCtx.name
+      console.log(r);
+    }, function(e) {
+      //DO SOMETHING?
+    });
+    $scope.signout = function() {
+      session.logout().then(function(r){
+        $scope.user = null;
+      });
+    }
+  })
+
   .controller('PageCtrl', function($scope, $routeParams, pages, drafts) {
     $scope.pageId = $routeParams.pageId;
 

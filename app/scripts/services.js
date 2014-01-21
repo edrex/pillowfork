@@ -102,5 +102,15 @@ angular.module('app.services', [])
         return msgs;
       }
     }
-  });
+  })
 
+  .factory('session', function($http){
+    return {
+      get: function(){
+        return $http.get('/_session');
+      },
+      logout: function(){
+        return $http.delete('/_session');
+      }
+    }
+  });
