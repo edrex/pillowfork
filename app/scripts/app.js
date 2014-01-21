@@ -17,18 +17,20 @@ angular.module('pillowfork', ['ngRoute', 'ngSanitize', 'app.services', 'app.dire
     $scope.notices = notices;
   })
 
-  .controller('SessionCtrl', function($scope, session) {
-    session.get().then(function(r){
-      // null if not signed in
-      $scope.user = r.data.userCtx.name
-      console.log(r);
-    }, function(e) {
-      //DO SOMETHING?
+  .controller('SessionCtrl', function($scope, sessionSvc) {
+    // handles both signed in and anon case
+    $scope.$on('session:loaded', function(event, data) {
+      console.log(data);
+      $scope.user = data.userCtx.name;
     });
-    $scope.signout = function() {
-      session.logout().then(function(r){
-        $scope.user = null;
-      });
+    $scope.$on('session:deleted', function(event, data) {
+      $scope.user = null;
+    });
+
+    $scope.signin = sessionSvc.signin;
+    $scope.signout = function(){
+      console.log('foo');
+      sessionSvc.signout();
     }
   })
 
@@ -45,7 +47,7 @@ angular.module('pillowfork', ['ngRoute', 'ngSanitize', 'app.services', 'app.dire
       // What does this do?
       $scope.page = undefined;
     }
- 
+
     function loadSequels() {
       pages.sequels($scope.pageId).then(function(res){
         $scope.nextPages = _.pluck(res.rows, 'value');

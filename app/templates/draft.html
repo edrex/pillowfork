@@ -1,8 +1,8 @@
 <div class="page draft" ng-cloak>
-  <div ng-controller="SessionCtrl">
-    <div class="user" ng-show="user">Signed in as {{ user }} (<a id="signout" href ng-click="signout()">sign out</a>)</div>
-    <a id="publish" href ng-show="user" ng-click="publish()">publish</a>
-    <a id="signin" href="/auth.html" ng-show="!user">Sign in to publish</a>
+  <div class="info" ng-controller="SessionCtrl">
+    <a id="publish" href ng-click="user ? publish() : signin()">publish</a>
+    <span class="name" ng-show="user">{{ user }}</span>
+    <a id="signout" href ng-show="user" ng-click="signout()">&times;</a>
   </div>
   <h1 id="title" contenteditable ng-model="draft.title"></h1>
   <div id="body" contenteditable ng-model="draft.body"></div>

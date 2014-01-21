@@ -7,14 +7,14 @@ angular.module('app.services', [])
     var c = $location;
     return c.protocol() + '://' + c.host() + (c.port() ? ':'+ c.port() : '') + '/' + db;
   })
-       
+
   .factory('remotePagesDb', function(dbUri) {
     return new PouchDB(dbUri, {ajax: {cache: false}});
   })
 
   .factory('pages', function($rootScope, remotePagesDb, ddoc) {
     var db = remotePagesDb;
-    
+
     // fully local copy of pages data for indexedDb browsers
     if (window.indexedDB) {
       var localDb = new PouchDB('pillowfork-pages');
@@ -49,7 +49,7 @@ angular.module('app.services', [])
   .factory('drafts', function(pages, notices) {
     var db = new PouchDB('pillowfork-drafts');
     return {
-      get: function(id) { 
+      get: function(id) {
         id = id || "/";
         return db.get(id).then(null, function(e){
           // if doc doesn't exist, return an empty doc
@@ -60,7 +60,7 @@ angular.module('app.services', [])
           }
         });
       },
-      put: function(draft) { 
+      put: function(draft) {
         console.log("saved draft:", draft);
         return db.put(draft).then(function(r) {
           if (r.rev) draft._rev = r.rev;
@@ -104,13 +104,43 @@ angular.module('app.services', [])
     }
   })
 
-  .factory('session', function($http){
-    return {
-      get: function(){
-        return $http.get('/_session');
-      },
-      logout: function(){
-        return $http.delete('/_session');
+  .factory('sessionSvc', function($http, $rootScope){
+    var verify = function(assertion) {
+      if (assertion) {
+        return $http.post('/_browserid', {
+          'assertion': encodeURIComponent(assertion)
+        }).success(function(data) {
+          $rootScope.$broadcast('session:loaded', data);
+        }).error(function(data, status, headers, config) {
+          $rootScope.$broadcast('session:failed', data);
+        })
+      } else {
+        $rootScope.$broadcast('session:failed', {msg: 'assertion missing'});
       }
+    };
+
+    var registerWatches = function(loggedInUser){
+      navigator.id.watch({
+        loggedInUser: loggedInUser,
+        onlogin: function(assertion) {
+          $rootScope.$broadcast('session:verifying', assertion);
+          verify(assertion);
+        },
+        onlogout: function() {
+          $http.delete('/_session').success(function(data){
+            $rootScope.$broadcast('session:deleted', data);
+          });
+        }
+      });
+    };
+
+    $http.get('/_session').success(function(data){
+      $rootScope.$broadcast('session:loaded', data);
+      registerWatches(data.userCtx.name);
+    });
+
+    return {
+      signin: navigator.id.request,
+      signout: navigator.id.logout
     }
   });

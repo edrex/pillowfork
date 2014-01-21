@@ -33,6 +33,6 @@
     background-color: #EEEEEE;
 }
 
-#publish {
-  float: right;
+.info {
+  text-align: right;
 }
