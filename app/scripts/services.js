@@ -68,6 +68,7 @@ angular.module('app.services', [])
       )},
       publish: function(draft) {
         var page = {
+          type: 'page',
           predecessors: [draft._id],
           title: draft.title,
           body: draft.body

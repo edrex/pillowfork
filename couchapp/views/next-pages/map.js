@@ -1,5 +1,5 @@
 function(doc) {
-  if (doc.title && doc.body) {
+  if (doc.type == 'page') {
     if (!doc.predecessors) {
       emit (null, doc)
     } else {

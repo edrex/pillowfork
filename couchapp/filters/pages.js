@@ -1,3 +1,3 @@
 function(doc, req) {
-  return !!((doc.title && doc.body) || doc._deleted);
+  return !!(doc.type == 'page' || doc._deleted);
 }
