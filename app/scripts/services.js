@@ -141,7 +141,7 @@ angular.module('app.services', [])
     });
 
     return {
-      signin: navigator.id.request,
-      signout: navigator.id.logout
+      signin: function() {return navigator.id.request()},
+      signout: function() {return navigator.id.logout()}
     }
   });
