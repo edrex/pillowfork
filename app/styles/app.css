@@ -22,15 +22,12 @@
 }
 
 .draft #title {
+    min-height: 1em;
     border-bottom: 1px dotted black;
 }
 
 .draft #body {
-    background-color: #EEEEEE;
-}
-
-.draft #body {
-    background-color: #EEEEEE;
+    min-height: 4em;
 }
 
 .info {
