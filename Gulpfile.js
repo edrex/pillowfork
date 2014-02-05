@@ -33,7 +33,7 @@ gulp.task('concat', function() {
     .pipe(gulp.dest('app/assets/'));
 });
 
-gulp.task('push', function() { 
+gulp.task('push', function() {
   return gulp.src('couchapp')
     .pipe(exec('erica push <%= file.path %> <%= options.env %>', {env: env}))
     .pipe(livereload(server))
@@ -53,17 +53,15 @@ gulp.task('watch', function() {
 gulp.task('test', function() {
   gulp.src(["./tests/e2e"])
     .pipe(protractor.protractor({
-      configFile: "test/protractor."+env+".conf.js"
-    })) 
+      configFile: "test/protractor.conf.js"
+    }))
 });
 
 gulp.task('autotest', function() {
   gulp.watch(['couchapp/**/*', 'test/e2e/**/*.js'], function(event) {
     console.log('File '+event.path+' was '+event.type+', running tests...');
-    gulp.src(["./tests/e2e"])
-      .pipe(protractor.protractor({
-        configFile: "test/protractor.auto.conf.js"
-      }))
+    gulp.src(["./test/e2e"])
+      .pipe(exec('NODE_ENV=auto node_modules/.bin/protractor test/protractor.conf.js'));
   });
 });
 

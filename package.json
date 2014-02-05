@@ -9,7 +9,7 @@
     "prepublish": "node ./node_modules/protractor/bin/webdriver-manager update",
     "postinstall": "node ./node_modules/bower/bin/bower install",
     "webdriver": "node ./node_modules/protractor/bin/webdriver-manager start",
-    "test": "karma start test/karma-unit.conf.js; node_modules/.bin/protractor test/protractor.local.conf.js"
+    "test": "karma start test/karma-unit.conf.js; node_modules/.bin/protractor test/protractor.conf.js"
   },
   "devDependencies": {
     "bower": "~1.2.6",

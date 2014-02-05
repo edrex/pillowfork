@@ -50,7 +50,7 @@ exports.config = {
   baseUrl: 'http://localhost:5984/dev/',
 
   // Selector for the element housing the angular app - this defaults to
-  // body, but is necessary if ng-app is on a descendant of <body>  
+  // body, but is necessary if ng-app is on a descendant of <body>
   rootElement: 'html',
 
   // ----- Options to be passed to minijasminenode -----
@@ -67,3 +67,24 @@ exports.config = {
     // defaultTimeoutInterval: 30000
   }
 };
+
+var E = process.env.NODE_ENV
+var c = exports.config
+
+if (E === "prod") {
+  c.sauceUser = 'pdxhub';
+  c.sauceKey = "16de625e-dec1-452a-b36f-11ee9a368fc4";
+  c.capabilities = {
+    // browserName: 'chrome',
+    browserName: 'iPhone'
+    // browserName: 'android'
+    // browserName: 'firefox'
+    // browserName: 'safari'
+    // browserName: 'internet explorer',
+    // version: '10'
+  };
+  c.baseUrl = 'http://pillowfork.com';
+};
+if (E === "auto") {
+  c.chromeOnly = true;
+}
