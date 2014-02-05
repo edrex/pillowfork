@@ -1,19 +1,17 @@
 {
   "name": "pillowfork",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/edrex/pillowfork.git"
+  },
   "scripts": {
-    "postinstall": "node ./node_modules/bower/bin/bower install"
+    "prepublish": "node ./node_modules/protractor/bin/webdriver-manager update",
+    "postinstall": "node ./node_modules/bower/bin/bower install",
+    "webdriver": "node ./node_modules/protractor/bin/webdriver-manager start",
+    "test": "karma start test/karma-unit.conf.js; node_modules/.bin/protractor test/protractor.local.conf.js"
   },
   "devDependencies": {
-    "matchdep": "~0.1.2",
-    "grunt": "~0.4.1",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-shell": "~0.4.0",
-    "grunt-karma": "~0.6.2",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-open": "~0.2.2",
     "bower": "~1.2.6",
     "karma-script-launcher": "~0.1.0",
     "karma-firefox-launcher": "~0.1.0",
@@ -26,8 +24,6 @@
     "karma-coverage": "~0.1.0",
     "karma": "~0.10.2",
     "protractor": "~0.16.0",
-    "grunt-protractor-runner": "~0.2.1",
-    "grunt-shell-spawn": "~0.3.0",
     "gulp-concat": "~2.1.7",
     "gulp": "~3.3.0",
     "gulp-exec": "~1.0.3",
