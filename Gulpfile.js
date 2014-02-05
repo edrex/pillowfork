@@ -4,6 +4,8 @@ var gulp = require('gulp'),
     lr = require('tiny-lr'),
     livereload = require('gulp-livereload'),
     server = lr(),
+    sourceStream = require('vinyl-source-stream'),
+    browserify = require('browserify'),
     concat = require('gulp-concat');
 
 var env = gulp.env.prod ? 'prod' : 'local';
@@ -17,16 +19,22 @@ var scripts = [
   'app/components/angular-sanitize/angular-sanitize.js',
   'app/scripts/services.js',
   'app/scripts/directives.js',
-  'app/scripts/app.js'
+  'app/assets/app.js'
 ];
 var styles = [
   'app/components/normalize-css/normalize.css',
   'app/styles/app.css'
 ]
 
+gulp.task('browserify', function() {
+  return browserify('./app/scripts/app.js').bundle()
+  .pipe(sourceStream('app.js'))
+  .pipe(gulp.dest('app/assets/app.js'));
+});
+
 gulp.task('concat', function() {
   gulp.src(scripts)
-    .pipe(concat('app.js'))
+    .pipe(concat('bundle.js'))
     .pipe(gulp.dest('app/assets/'));
   gulp.src(styles)
     .pipe(concat('app.css'))

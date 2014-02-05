@@ -29,6 +29,8 @@
     "gulp-exec": "~1.0.3",
     "gulp-protractor": "0.0.2",
     "tiny-lr": "0.0.5",
-    "gulp-livereload": "~0.1.1"
+    "gulp-livereload": "~0.1.1",
+    "browserify": "~3.24.11",
+    "vinyl-source-stream": "0.0.0"
   }
 }
