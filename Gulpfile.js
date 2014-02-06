@@ -9,37 +9,39 @@ var gulp = require('gulp'),
     concat = require('gulp-concat');
 
 var env = gulp.env.prod ? 'prod' : 'local';
+var src = './app/',
+    dest = './couchapp/_attachments/';
 
 var scripts = [
-  'app/components/lodash/dist/lodash.js',
-  'app/components/pouchdb-nightly/index.js',
-  'app/components/angular/angular.js',
-  'app/components/angular-route/angular-route.js',
-  'app/components/angular-sanitize/angular-sanitize.js',
-  'app/assets/app.js'
+  src+'components/lodash/dist/lodash.js',
+  src+'components/pouchdb-nightly/index.js',
+  src+'components/angular/angular.js',
+  src+'components/angular-route/angular-route.js',
+  src+'components/angular-sanitize/angular-sanitize.js',
+  src+'assets/app.js'
 ];
 var styles = [
-  'app/components/normalize-css/normalize.css',
-  'app/styles/app.css'
+  src+'components/normalize-css/normalize.css',
+  src+'styles/app.css'
 ]
 
 gulp.task('browserify', function() {
-  return browserify('./app/scripts/app.js').bundle()
+  return browserify(src+'scripts/app.js').bundle()
   .pipe(sourceStream('app.js'))
-  .pipe(gulp.dest('app/assets/app.js'));
+  .pipe(gulp.dest(dest+'assets/app.js'));
 });
 
 gulp.task('concat', function() {
   gulp.src(scripts)
     .pipe(concat('bundle.js'))
-    .pipe(gulp.dest('app/assets/'));
+    .pipe(gulp.dest(dest+'assets/'));
   gulp.src(styles)
     .pipe(concat('app.css'))
-    .pipe(gulp.dest('app/assets/'));
+    .pipe(gulp.dest(dest+'assets/'));
 });
 
 gulp.task('push', function() {
-  return gulp.src('couchapp')
+  return gulp.src('./couchapp/')
     .pipe(exec('erica push <%= file.path %> <%= options.env %>', {env: env}))
     .pipe(livereload(server))
 });

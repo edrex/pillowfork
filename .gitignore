@@ -1,10 +1,8 @@
 .DS_Store
-.agignore
 node_modules
 bower_components
-/app/components
+/couchapp/_attachments/components
+/couchapp/_attachments/assets
 /selenium
 /coverage
-/app/assets
-vendor
 /couchapp/.couchapprc
