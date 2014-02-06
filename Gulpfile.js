@@ -52,13 +52,6 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('test', function() {
-  gulp.src(["./tests/e2e"])
-    .pipe(protractor.protractor({
-      configFile: "test/protractor.conf.js"
-    }))
-});
-
 gulp.task('autotest', function() {
   gulp.watch(['couchapp/**/*', 'test/e2e/**/*.js'], function(event) {
     console.log('File '+event.path+' was '+event.type+', running tests...');
