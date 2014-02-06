@@ -48,10 +48,7 @@ gulp.task('push', function() {
 gulp.task('watch', function() {
   server.listen(7777, function (err) {
     if (err) return console.log(err);
-    gulp.watch('couchapp/**/*', function(event) {
-      console.log('File '+event.path+' was '+event.type+', pushing');
-      gulp.run('push');
-    });
+    gulp.watch('couchapp/**/*', ['push']);
   });
 });
 
