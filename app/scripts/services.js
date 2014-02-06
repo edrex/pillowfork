@@ -1,3 +1,5 @@
+var sha1 = require("crypto-js/sha1");
+
 angular.module('app.services', [])
 
   .constant('ddoc', 'pillowfork')
@@ -74,7 +76,7 @@ angular.module('app.services', [])
           body: draft.body
         }
         if (draft._id == '/') delete page.predecessors;
-        page._id = CryptoJS.SHA1(JSON.stringify(page)).toString();
+        page._id = sha1(JSON.stringify(page)).toString();
         return pages.put(page).then(function(r){
           return db.remove(draft);
         }, function(e){

@@ -11,7 +11,6 @@ var gulp = require('gulp'),
 var env = gulp.env.prod ? 'prod' : 'local';
 
 var scripts = [
-  'app/scripts/sha1.js',
   'app/components/lodash/dist/lodash.js',
   'app/components/pouchdb-nightly/index.js',
   'app/components/angular/angular.js',
