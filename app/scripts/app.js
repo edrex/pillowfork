@@ -1,3 +1,6 @@
+require('./services.js');
+require('./directives.js');
+
 angular.module('pillowfork', ['ngRoute', 'ngSanitize', 'app.services', 'app.directives'])
 
   .constant('TPL_PATH', '/templates')
