@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html data-ng-app='pillowfork'>
-  <head>
-    <title>Pillowfork</title>
-    <link rel="stylesheet" href="/assets/app.css" type="text/css">
-  </head>
-  <body>
-    <header>
-      <ul id="notices" ng-controller="NoticesCtrl" ng-cloak>
-        <li ng-repeat="notice in notices.all()" class="notice {{notice.type}}">{{notice.message}}</li>
-      </ul>
-    </header>
-    <main id="view-container">
-      <div ng-view></div>
-    </main>
-    <footer></footer>
-  </body>
+<html>
+<head>
+  <title>Pillowfork</title>
+  <link rel="stylesheet" href="app.css" type="text/css">
+</head>
+<body>
+  <header>
+  </header>
+  <main>
+    <div id="todoApp"></div>
+  </main>
+  <footer></footer>
+</body>
 
-  <script src="//login.persona.org/include.js"></script>
-  <script src="assets/bundle.js"></script>
+<script src="app/bundle.js"></script>
 </html>
