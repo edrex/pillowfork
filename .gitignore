@@ -1,8 +1,1 @@
-.DS_Store
 node_modules
-bower_components
-/couchapp/_attachments/components
-/couchapp/_attachments/assets
-/selenium
-/coverage
-/couchapp/.couchapprc
