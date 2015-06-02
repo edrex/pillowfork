@@ -1,13 +1,14 @@
 design data model
+routing
 get basic views working:
-	list
-	edit
-	save
+	page
+	draft
 
-get authn working
-port authz rules from couch
-	
+restore authn
 
+add authz:
+ - require user
+ - timestamp
 
 Data model
 
