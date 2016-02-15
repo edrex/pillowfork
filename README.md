@@ -1,6 +1,6 @@
 # Pillowfork
 
-This is the source code for [pillowfork.com](http://pillowfork.com/).
+This is the source code for [pillowfork.pdxhub.org](http://pillowfork.pdxhub.org/).
 Pillowfork is a collaborative story-telling experiment encouraging writers take stories in new directions. Anyone can add a page to branch in the narrative in a new direction. All the branches coexist for the reader to explore.
 
 ## Uses
