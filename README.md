@@ -1,6 +1,6 @@
 # [Pillowfork](http://pillowfork.pdxhub.org/)
 
-a shared space for experimental storytelling,
+A shared space for experimental storytelling.
 
 Every page is an opportunity to take the narrative in a new direction. All branches coexist for the reader to explore.
 
