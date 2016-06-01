@@ -1,7 +1,8 @@
-# Pillowfork
+# [Pillowfork](http://pillowfork.pdxhub.org/)
 
-This is the source code for [pillowfork.pdxhub.org](http://pillowfork.pdxhub.org/).
-Pillowfork is a collaborative story-telling experiment encouraging writers take stories in new directions. Anyone can add a page to branch in the narrative in a new direction. All the branches coexist for the reader to explore.
+a shared space for experimental storytelling,
+
+Every page is an opportunity to take the narrative in a new direction. All branches coexist for the reader to explore.
 
 ## Uses
 
@@ -15,8 +16,7 @@ Pillowfork is a collaborative story-telling experiment encouraging writers take 
 
 ## Technology
 
-Pillowfork is a [CouchApp](http://guide.couchdb.org/editions/1/en/standalone.html). One advantage of this approach is that multiple instances of the app can **federate**, sharing content back and forth seamlessly.
-The vast majority of the app code is “client-side”, which is to say that it runs in the user’s browser rather than on the server. Data from the server is synchronized with each client, and stored in client-side storage (see [IndexedDB](https://developer.mozilla.org/en-US/docs/IndexedDB)) if available. Additionally, draft content is stored in the author’s browser (this works even in older browsers) until the author is ready to publish it. This enables two interesting modes:
+Pillowfork is a [CouchApp](http://guide.couchdb.org/editions/1/en/standalone.html). The vast majority of the app code is “client-side” (runs in the user’s browser). Data from the server is synchronized with each client, and stored in client-side storage (see [IndexedDB](https://developer.mozilla.org/en-US/docs/IndexedDB)) if available. Additionally, draft content is stored in the author’s browser (this works even in older browsers) until the author is ready to publish it. This enables two interesting modes:
 
  - **Offline**: The site can be used fully-offline, including authoring. The only action which requires a net connection is publishing a finished page. Take it to the park. Changes sync next time you get a connection.
  - **Real-time collaboration**: New pages are sent immediately to other connected browsers immediately, enabling games like **story ping-pong** and **story swarm**.
